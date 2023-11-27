@@ -1,0 +1,2 @@
+class ChampionRegionsController < ApplicationController
+end
