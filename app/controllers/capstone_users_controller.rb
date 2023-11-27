@@ -1,7 +1,7 @@
 class CapstoneUsersController < ApplicationController
     skip_before_action :authorize, only: :create
     def show
-        render json: @current_user, include: [:champions, :champion_comments]
+        render json: @current_user, include: [:champions]
     end
 
     def create
