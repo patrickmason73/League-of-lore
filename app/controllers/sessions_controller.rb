@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     
     def create
         newUser = CapstoneUser.find_by(username: params[:username])
-        if user&.authenticate(params[:password])
+        if newUser&.authenticate(params[:password])
             session[:user_id] = newUser.id
             render json: newUser, include: [:champion_comments, :champions]
         else

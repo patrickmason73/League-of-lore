@@ -7,6 +7,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+img {
+  aspect-ratio: auto;
+  max-width: 100%;
+  height: auto;
+  width: auto\9;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
