@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   post "/signup", to: "capstone_users#create"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+  get "/search/:name", to: "champions#search"
 end

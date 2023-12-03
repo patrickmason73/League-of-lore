@@ -31,7 +31,7 @@ function Login() {
 
 
     return (
-        <>
+        <div style={{padding: "10px"}}>
             <form onSubmit={handleSubmit} style={{padding: "10px"}}>
                 <label>
                    <b> Username: </b>
@@ -61,7 +61,7 @@ function Login() {
                     ))}
                 </ul>
             </form>
-        </>
+        </div>
     )
 }
 

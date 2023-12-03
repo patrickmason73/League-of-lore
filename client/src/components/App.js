@@ -6,6 +6,7 @@ import Home from "./Home";
 import Signup from "./Signup";
 import UserProfile from "./UserProfile";
 import Login from "./Login";
+import Search from "./Search";
 
 
 
@@ -87,6 +88,9 @@ function App() {
             {currentUser ? <UserProfile /> : <Login />}
           </>
          }>
+
+         </Route>
+         <Route path="/search/:name" element={<Search />}>
 
          </Route>
          </Routes>

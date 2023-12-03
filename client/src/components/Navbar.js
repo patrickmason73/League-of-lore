@@ -2,59 +2,56 @@ import React, {useContext} from 'react';
 import { NavLink } from 'react-router-dom';
 import { UserContext } from './contexts/UserContext';
 
-const linkStyles = {
-    width: "150px",
-    padding: "12px",
-    margin: "0 6px 6px",
-    background: "blue",
-    textDecoration: "none",
-    color: "white",
-    alignItems: "center",
-  };
+
+    
+    
 
   const navStyle = {
     height: "75px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "lightgray",
-    padding: "10px"
+    backgroundColor: "black",
+    padding: "10px",
+    clear: "right",
+    position: "fixed"
   }
 
 function Navbar({ logout }) {
     const {currentUser} = useContext(UserContext)
 
     return (
-        <div >
+        <div style={{height: "80px"}}>
             <nav style={navStyle}>
                 <NavLink to="/"
                
-                style={linkStyles}
-                
+                className="button-1"
+                role='button'
+                style={{marginLeft: "40px"}}
                 >
                  Home
                 </NavLink>
                 
                 <NavLink to="/login"
                
-                style={linkStyles}
-               
+               className="button-1"
+               role='button'
                 >
                  {currentUser ? "My Account" : "Login"}
                 </NavLink>
                 
                 <NavLink to="/signup"
               
-                style={linkStyles}
-               
+              className="button-1"
+              role='button'
                 >
                  Sign up
                 </NavLink>
                 
                 <NavLink to="/posts/new"
               
-              style={linkStyles}
-             
+              className="button-1"
+              role='button'
               >
                 General Forum
               </NavLink>
@@ -62,7 +59,10 @@ function Navbar({ logout }) {
                 {currentUser ? <NavLink to="/logout" onClick={logout}>
                 Log Out
                 </NavLink> : null}
+                <img src='https://1000logos.net/wp-content/uploads/2020/09/League-of-Legends-Logo-2008.png' alt='lol_logo' className='lol-logo' style={{height: "auto", width: "15%"}}/>
                 </nav>
+                
+                
         </div>
     )
 }
