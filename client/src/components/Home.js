@@ -2,18 +2,18 @@ import React from "react";
 import ChampionCard from "./ChampionCard";
 
 
-function Home({ champions }) {
+function Home({ champions, handleAddComment }) {
 
     const displayChamps = champions.map((champion) => {
         return (
-        <article key={champion.id} style={{backgroundColor: "lightgray", paddingBottom: "15px"}}>
-        <ChampionCard champion={champion} />
+        <article key={champion.id} style={{backgroundColor: "lightgray", paddingBottom: "15px", paddingTop: '10px', marginBottom: "15px", display: "block"}}>
+        <ChampionCard champion={champion} handleAddComment={handleAddComment}/>
         </article> 
         )
     })
 
     return (
-        <div style={{margin: "5px"}}>
+        <div> 
             {displayChamps}
         </div>
     )

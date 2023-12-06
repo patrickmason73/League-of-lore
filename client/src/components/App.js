@@ -66,16 +66,51 @@ function App() {
         })
       }
 
+      function handleAddComment(newComment, champion) {
+        const championToUpdate = champions.find((champ) => champ.id === champion.id)
+        fetch("/champion_comments", {
+         method: "POST",
+         headers: {
+          "Content-type": "application/json",
+         },
+         body: JSON.stringify({
+          content: newComment,
+          capstone_user_id: currentUser.id,
+          champion_id: champion.id,
+         }),
+        }
+       ).then((r) => {
+        if (r.ok) {
+          r.json().then((data) => {
+            const updatedChampions = champions.map((champion) => {
+              if (champion === championToUpdate)
+              return {
+                ...championToUpdate,
+                champion_comments: [...championToUpdate.champion_comments, data],
+                capstone_users: [...championToUpdate.capstone_users, currentUser]
+              }
+              else {return champion}
+            })
+            setChampions(updatedChampions)
+            setErrors([])
+          })
+        } else {
+          r.json().then((err) => setErrors(err.errors))
+        }
+       })
+      }
+
 
     return (
         <div>
-            <strong style={{fontSize:"150%"}}>{currentUser !== null && `Welcome back, ${currentUser.display_name}`}</strong>
-            <Navbar logout={logout}/>
-        
+           
+         <Navbar logout={logout}/>
+         <div style={ currentUser ? {width: "100%", height: "127px", backgroundColor: "black", borderStyle: "groove"} : {width: "100%", height: "95px", backgroundColor: "black", borderStyle: "groove"}}></div>
+
          <Routes>
          <Route path="/*" element={
            <>
-         <Home champions={champions}/>
+         <Home champions={champions} handleAddComment={handleAddComment}/>
          </>
          }>
          </Route> 

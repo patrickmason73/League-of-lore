@@ -13,6 +13,6 @@ class CapstoneUsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:username, :password, :password_confirmation, :display_name, :profile_pic, :bio)
+        params.permit(:username, :password, :password_confirmation, :display_name, :profile_pic, :bio, :champion_comments, :champions)
     end
 end

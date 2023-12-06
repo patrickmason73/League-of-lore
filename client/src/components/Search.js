@@ -10,11 +10,11 @@ function Search() {
   }
 
     return (
-        <div>
+        <div style={{backgroundColor: "lightgray"}}>
             <form onSubmit={handleSubmit}>
                 <label>
                     Search By Champion Name: 
-                    <input type="text" placeholder="Search..."></input>
+                    <input type="text" placeholder="Search..." style={{margin: "5px"}}></input>
                 </label>
                <button type="submit">Search</button>
             </form>

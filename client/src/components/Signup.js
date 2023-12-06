@@ -19,7 +19,7 @@ function Signup ({ errors, handleSignUp }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} style={{textAlign: "center"}}>
+        <form onSubmit={handleSubmit} style={{textAlign: "center", backgroundColor: "lightgray", paddingBottom: "15px", paddingTop: "5px"}}>
             <label>
                <h3>Username:
                <input 
@@ -27,6 +27,7 @@ function Signup ({ errors, handleSignUp }) {
                 id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                style={{margin: "5px"}}
                 />
                </h3>
                 
@@ -38,6 +39,7 @@ function Signup ({ errors, handleSignUp }) {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                style={{margin: "5px"}}
                 />
                 </h3>
               
@@ -49,6 +51,7 @@ function Signup ({ errors, handleSignUp }) {
                 id="password_confirmation"
                 value={passwordConfirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
+                style={{margin: "5px"}}
                 />
                </h3>
 
@@ -61,6 +64,7 @@ function Signup ({ errors, handleSignUp }) {
                 id="display_name"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
+                style={{margin: "5px"}}
                 />
             </label>
             <br />
@@ -74,6 +78,7 @@ function Signup ({ errors, handleSignUp }) {
                  id="content"
                  value={bio}
                  onChange={(e) => setBio(e.target.value)}
+                 style={{margin: "5px"}}
                  />
              </h2>
 
@@ -85,12 +90,12 @@ function Signup ({ errors, handleSignUp }) {
                 type="text"
                 id="profilePic"
                 value={profilePic}
-                style={{width:"400px"}}
+                style={{width:"400px", margin: "5px"}}
                 onChange={(e) => setProfilePic(e.target.value)}
                 />
             </label>
             <br />
-            <button type="submit">CREATE ACCOUNT</button>
+            <button type="submit" style={{fontSize: "100%", margin: "10px"}}>CREATE ACCOUNT</button>
             <ul>{errors && errors.map((err) => (
                 <li key={err}>{err}</li>
             ))}</ul>

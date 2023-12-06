@@ -7,22 +7,23 @@ import { UserContext } from './contexts/UserContext';
     
 
   const navStyle = {
-    height: "75px",
+    height: '75px',
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "black",
     padding: "10px",
-    clear: "right",
-    position: "fixed"
+    // position: "fixed"
   }
 
 function Navbar({ logout }) {
     const {currentUser} = useContext(UserContext)
 
     return (
-        <div style={{height: "80px"}}>
+        <div style={{position: 'fixed', display: 'block'}}>
+          {currentUser !== null && <strong style={{fontSize:"150%", backgroundColor: "#EA4C89", display: 'block', borderStyle: "solid"}}>Welcome back, {currentUser.display_name}</strong>}
             <nav style={navStyle}>
+              
                 <NavLink to="/"
                
                 className="button-1"
@@ -56,9 +57,15 @@ function Navbar({ logout }) {
                 General Forum
               </NavLink>
 
-                {currentUser ? <NavLink to="/logout" onClick={logout}>
+                {currentUser ? <NavLink to="/logout" className="button-1" role='button' style={{backgroundColor: 'red'}} onClick={logout}>
                 Log Out
                 </NavLink> : null}
+                <NavLink to="/search/:name"
+                className="button-1"
+                role='button'
+                >
+                  Search
+                </NavLink>
                 <img src='https://1000logos.net/wp-content/uploads/2020/09/League-of-Legends-Logo-2008.png' alt='lol_logo' className='lol-logo' style={{height: "auto", width: "15%"}}/>
                 </nav>
                 

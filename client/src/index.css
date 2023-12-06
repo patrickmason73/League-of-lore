@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
 }
 
 .champ-img {
@@ -29,7 +30,7 @@ code {
 .button-1 {
   align-items: center;
   justify-content: center;
-  background-color: #EA4C89;
+  background-color: #ea4c89;
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;

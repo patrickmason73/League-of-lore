@@ -31,9 +31,9 @@ function Login() {
 
 
     return (
-        <div style={{padding: "10px"}}>
-            <form onSubmit={handleSubmit} style={{padding: "10px"}}>
-                <label>
+        <div style={{padding: "10px", backgroundColor: "lightgray"}}>
+            <form onSubmit={handleSubmit} style={{padding: "10px", display: 'block'}}>
+                <label style={{padding: '5px', margin: '5px', display: "block"}}>
                    <b> Username: </b>
                     <input
                      type="text"
@@ -42,8 +42,8 @@ function Login() {
                      onChange={(e) => setUsername(e.target.value)}
                     />
                 </label>
-
-                <label>
+                <br />
+                <label style={{padding: '5px', margin: '5px', display: "block"}}>
                    <b> Password: </b>
                     <input 
                      type="password"
@@ -54,7 +54,7 @@ function Login() {
                 </label>
                 <br />
 
-                <button type="submit">Login</button>
+                <button type="submit" style={{marginLeft: "100px"}}>Login</button>
                 <ul>
                     {errors.map((error) => (
                         <li key={error.id}>{error}</li>
