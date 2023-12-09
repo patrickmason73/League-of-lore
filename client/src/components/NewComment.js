@@ -51,7 +51,7 @@ const [text, setText] = useState("")
                 <br />
                 <button type="submit">Post Comment</button>
             </form>
-        :"Log in or sign up to comment!"} 
+        : <b style={{textDecoration: "underline"}}>Log in or sign up to comment!</b>} 
         </div>
         <div style={{borderStyle: "groove", margin: "5px", backgroundColor: "blanchedalmond"}}>
         <h3 style={{marginLeft: "10px", fontSize: "150%"}}>User Comments:</h3>

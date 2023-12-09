@@ -16,6 +16,8 @@ function App() {
  const navigate = useNavigate();
  const [errors, setErrors] = useState([])
  const [champions, setChampions] = useState([])
+ const [searchText, setSearchText] = useState("")
+
 
  useEffect(() => {
     fetch('/champions')
@@ -66,7 +68,7 @@ function App() {
         })
       }
 
-      function handleAddComment(newComment, champion) {
+   function handleAddComment(newComment, champion) {
         const championToUpdate = champions.find((champ) => champ.id === champion.id)
         fetch("/champion_comments", {
          method: "POST",
@@ -86,8 +88,8 @@ function App() {
               if (champion === championToUpdate)
               return {
                 ...championToUpdate,
-                champion_comments: [...championToUpdate.champion_comments, data],
-                capstone_users: [...championToUpdate.capstone_users, currentUser]
+                champion_comments: [data, ...championToUpdate.champion_comments],
+                capstone_users: [currentUser, ...championToUpdate.capstone_users],
               }
               else {return champion}
             })
@@ -104,8 +106,8 @@ function App() {
     return (
         <div>
            
-         <Navbar logout={logout}/>
-         <div style={ currentUser ? {width: "100%", height: "127px", backgroundColor: "black", borderStyle: "groove"} : {width: "100%", height: "95px", backgroundColor: "black", borderStyle: "groove"}}></div>
+         <Navbar logout={logout} navigate={navigate}/>
+         <div style={ currentUser ? {width: "100%", height: "127px", backgroundColor: "black"} : {width: "100%", height: "95px", backgroundColor: "black"}}></div>
 
          <Routes>
          <Route path="/*" element={
@@ -120,12 +122,16 @@ function App() {
          </Route>
          <Route path="/login" element={
           <>
-            {currentUser ? <UserProfile /> : <Login />}
+            {currentUser ? <UserProfile champions={champions}/> : <Login />}
           </>
          }>
 
          </Route>
-         <Route path="/search/:name" element={<Search />}>
+         <Route path="/search" element={
+          <>
+         <Search champions={champions} handleAddComment={handleAddComment} searchText={searchText} setSearchText={setSearchText}/>
+         </>
+         }>
 
          </Route>
          </Routes>

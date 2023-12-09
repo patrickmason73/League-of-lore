@@ -1,23 +1,32 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import ChampionCard from "./ChampionCard";
 
 
+function Search({ champions, handleAddComment, searchText, setSearchText }) {
+  // const [text, setText] = useState("")
+  const [champion, setChampion] = useState()
 
-function Search() {
-  const [text, setText] = useState("")
+  function handleSubmit(e) {
+    e.preventDefault();
+    setChampion(champions.find((champ) => champ.name.toLowerCase() === searchText.toLowerCase()))
+   }
 
-  function handleSubmit() {
-
-  }
+  useEffect(() => {
+    setChampion(champions.find((champ) => champ.name.toLowerCase() === searchText.toLowerCase()))
+  }, [champions])
 
     return (
-        <div style={{backgroundColor: "lightgray"}}>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Search By Champion Name: 
-                    <input type="text" placeholder="Search..." style={{margin: "5px"}}></input>
+        <div style={{backgroundColor: "lightgray", paddingTop: "20px", paddingBottom: "100px"}}>
+            <form onSubmit={handleSubmit} style={{textAlign: "center"}}>
+                <label style={{fontWeight: "500", fontSize: "125%"}}>
+                    <u>Search By Champion Name: </u>
+                    <input type="text" placeholder="Search..." id="search" value={searchText} onChange={(e) => setSearchText(e.target.value)} style={{margin: "10px", fontSize: "125%"}}></input>
                 </label>
-               <button type="submit">Search</button>
+               <button type="submit" style={{fontSize: "140%"}}>Search</button>
             </form>
+            <div>
+              {champion ? <ChampionCard champion={champion} handleAddComment={handleAddComment}/> :null}
+            </div>
         </div>
     )
 }
