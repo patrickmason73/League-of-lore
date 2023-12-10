@@ -102,6 +102,71 @@ function App() {
        })
       }
 
+      function handleDeleteComment(commentToDelete, champId) {
+        const championToUpdate = champions.find((champ) => champ.id === champId)
+        fetch(`/champion_comments/${commentToDelete.id}`, {
+          method: "DELETE",
+      }).then((res) => {
+          if (res.ok) {
+            const updatedChampions = champions.map((champ) => {
+              if (champ === championToUpdate)
+              return {
+                ...championToUpdate,
+                champion_comments: champ.champion_comments.filter((comment) => {
+                  return comment.id !== commentToDelete.id
+                }),
+                capstone_users: champ.capstone_users.filter((user) => {
+                 const champComments = champ.champion_comments.filter((comment) => {
+                  return comment.id !== commentToDelete.id
+                })
+                  if (champComments.find((e) => e.capstone_user_id === user.id)) { 
+                    return user
+                  }
+                  else {return null}
+                })
+              }
+              else {return champ}
+            })
+            setChampions(updatedChampions)
+            setErrors([])
+          }
+          else {res.json().then((err) => setErrors(err.errors))}
+      })
+      }
+
+      function handleCommentUpdate(newComment, champId, comment) {
+        const championToUpdate = champions.find((champ) => champ.id === champId)
+        fetch(`/champion_comments/${comment.id}`, {
+          method: "PATCH", 
+          headers: {
+              "Content-type" : "application/json",
+          },
+          body: JSON.stringify({
+              content: newComment,
+          }),
+      })
+      .then((r) => r.json())
+      .then((data) => {
+        const updatedChampions = champions.map((champ) => {
+          if (champ === championToUpdate)
+          return {
+            ...championToUpdate,
+            champion_comments: champ.champion_comments.map((comment) => {
+              if (comment.id === data.id) {
+                return data;
+            }
+            else {
+                return comment;
+            }
+            })
+          }
+          else {return champ}
+        })
+        setChampions(updatedChampions)
+      })
+        
+      }
+
 
     return (
         <div>
@@ -112,7 +177,7 @@ function App() {
          <Routes>
          <Route path="/*" element={
            <>
-         <Home champions={champions} handleAddComment={handleAddComment}/>
+         <Home champions={champions} handleAddComment={handleAddComment} handleDeleteComment={handleDeleteComment}/>
          </>
          }>
          </Route> 
@@ -129,10 +194,9 @@ function App() {
          </Route>
          <Route path="/search" element={
           <>
-         <Search champions={champions} handleAddComment={handleAddComment} searchText={searchText} setSearchText={setSearchText}/>
+         <Search champions={champions} handleAddComment={handleAddComment} searchText={searchText} setSearchText={setSearchText} handleDeleteComment={handleDeleteComment}/>
          </>
          }>
-
          </Route>
          </Routes>
         </div>

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import ChampionCard from "./ChampionCard";
 
 
-function Search({ champions, handleAddComment, searchText, setSearchText }) {
+function Search({ champions, handleAddComment, searchText, setSearchText, handleDeleteComment }) {
   // const [text, setText] = useState("")
   const [champion, setChampion] = useState()
 
@@ -24,8 +24,8 @@ function Search({ champions, handleAddComment, searchText, setSearchText }) {
                 </label>
                <button type="submit" style={{fontSize: "140%"}}>Search</button>
             </form>
-            <div>
-              {champion ? <ChampionCard champion={champion} handleAddComment={handleAddComment}/> :null}
+            <div >
+              {champion ? <ChampionCard champion={champion} handleAddComment={handleAddComment} handleDeleteComment={handleDeleteComment}/> : <p style={{textAlign: "center"}}><b>Ensure Name Spelled Correctly!</b></p>}
             </div>
         </div>
     )

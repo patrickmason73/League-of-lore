@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "./contexts/UserContext";
 
 
-function NewComment({ champion, handleAddComment }) {
+function NewComment({ champion, handleAddComment, handleDeleteComment }) {
 const {currentUser} = useContext(UserContext)
 const [text, setText] = useState("")
 
@@ -24,7 +24,7 @@ const [text, setText] = useState("")
             <h1 style={{borderStyle: "groove", width: "fit-content", marginLeft: "5px"}}>{commentUser.display_name}<img src={commentUser.profile_pic} alt="user_pfp" style={{float: "left", height: "21px", width: "21px"}}/></h1>
             
             <p style={{float: "bottom", fontWeight: "500", marginLeft: "5px"}}>{comment.content}</p>
-            
+            {(currentUser !== null && currentUser.id === commentUser.id) && <button onClick={() => handleDeleteComment(comment, champion.id)}>Delete Comment</button>}
         </article>
             : null}
         </div>
