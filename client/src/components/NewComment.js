@@ -2,14 +2,22 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "./contexts/UserContext";
 
 
-function NewComment({ champion, handleAddComment, handleDeleteComment }) {
+function NewComment({ champion, handleAddComment, handleDeleteComment, handleCommentUpdate }) {
 const {currentUser} = useContext(UserContext)
 const [text, setText] = useState("")
+const [editing, setEditing] = useState(false)
+const [newComment, setNewComment] = useState()
 
  function handleSubmit(e) {
     e.preventDefault();
     handleAddComment(text, champion)
     setText("")
+ }
+
+ function handleCommentSubmit(e, comment) {
+    e.preventDefault();
+    handleCommentUpdate(newComment, champion.id, comment)
+    setEditing(false)
  }
 
  
@@ -25,6 +33,24 @@ const [text, setText] = useState("")
             
             <p style={{float: "bottom", fontWeight: "500", marginLeft: "5px"}}>{comment.content}</p>
             {(currentUser !== null && currentUser.id === commentUser.id) && <button onClick={() => handleDeleteComment(comment, champion.id)}>Delete Comment</button>}
+            {(currentUser !== null && currentUser.id === commentUser.id) && <button onClick={() => {setEditing(current => !current); setNewComment(comment.content)}}>{editing ? "Cancel" : "Edit Comment"}</button>}
+            {editing ? 
+                    <form onSubmit={(e) => handleCommentSubmit(e, comment)}>
+                            <label>
+                                <h4>Comment:</h4>
+                                <textarea 
+                                    rows="10"
+                                    cols="70"
+                                    type="text"
+                                    id="newComment"
+                                    value={newComment}
+                                    onChange={(e) => setNewComment(e.target.value)}
+                                />
+                            </label>
+                            <br/>
+                            <button type="submit">UPDATE COMMENT</button>
+                    </form>
+                        : null}
         </article>
             : null}
         </div>

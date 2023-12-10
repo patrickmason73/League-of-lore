@@ -177,7 +177,7 @@ function App() {
          <Routes>
          <Route path="/*" element={
            <>
-         <Home champions={champions} handleAddComment={handleAddComment} handleDeleteComment={handleDeleteComment}/>
+         <Home champions={champions} handleAddComment={handleAddComment} handleDeleteComment={handleDeleteComment} handleCommentUpdate={handleCommentUpdate} errors={errors} setErrors={setErrors}/>
          </>
          }>
          </Route> 
@@ -194,7 +194,7 @@ function App() {
          </Route>
          <Route path="/search" element={
           <>
-         <Search champions={champions} handleAddComment={handleAddComment} searchText={searchText} setSearchText={setSearchText} handleDeleteComment={handleDeleteComment}/>
+         <Search champions={champions} handleAddComment={handleAddComment} searchText={searchText} setSearchText={setSearchText} handleDeleteComment={handleDeleteComment} handleCommentUpdate={handleCommentUpdate}/>
          </>
          }>
          </Route>
