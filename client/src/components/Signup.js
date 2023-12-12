@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 
 
-function Signup ({ errors, handleSignUp }) {
+function Signup ({ errors, handleSignUp, navigate }) {
 
 
     const [username, setUsername] = useState("")
@@ -19,7 +19,8 @@ function Signup ({ errors, handleSignUp }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} style={{textAlign: "center", backgroundColor: "lightgray", paddingBottom: "15px", paddingTop: "5px"}}>
+        <form onSubmit={handleSubmit} style={{textAlign: "center", backgroundImage: "linear-gradient(to right, #fc5c7d, #6a82fb)", paddingBottom: "55px", paddingTop: "5px"}}>
+        <span>Already Have An Account? <u style={{cursor: "pointer", fontWeight: "500"}} onClick={() => navigate("/login")}>Log in</u></span>
             <label>
                <h3>Username:
                <input 
@@ -58,7 +59,7 @@ function Signup ({ errors, handleSignUp }) {
             </label>
             <br />
             <label>
-                Display Name - This Is The Name Other Users Will See
+                <b>Display Name</b> - This Is The Name Other Users Will See
                 <input 
                 type="text"
                 id="display_name"
@@ -69,8 +70,7 @@ function Signup ({ errors, handleSignUp }) {
             </label>
             <br />
             <label>
-            <h2>Bio:
-              <p style={{fontSize:"75%"}}>Write A Little About Yourself</p>
+            <p> <b style={{fontSize: "115%"}}>Bio:</b>  Write A Little About Yourself (Max 1000 Characters)   </p>
                  <textarea 
                  rows="12"
                  cols="80"
@@ -80,12 +80,12 @@ function Signup ({ errors, handleSignUp }) {
                  onChange={(e) => setBio(e.target.value)}
                  style={{margin: "5px"}}
                  />
-             </h2>
+         
 
             </label>
             <br />
             <label>
-                Profile Picture URL:
+               <b>Profile Picture URL:</b> 
                 <input 
                 type="text"
                 id="profilePic"
@@ -95,7 +95,7 @@ function Signup ({ errors, handleSignUp }) {
                 />
             </label>
             <br />
-            <button type="submit" style={{fontSize: "100%", margin: "10px"}}>CREATE ACCOUNT</button>
+            <button className="button-9" type="submit">CREATE ACCOUNT</button>
             <ul>{errors && errors.map((err) => (
                 <li key={err}>{err}</li>
             ))}</ul>

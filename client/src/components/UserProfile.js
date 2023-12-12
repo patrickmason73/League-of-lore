@@ -24,7 +24,7 @@ function UserProfile({ champions }) {
                 } else {return null}
             })
             return (
-                <div key={champ.id} style={{borderStyle: "groove", margin: "14px"}}>
+                <div key={champ.id} style={{borderStyle: "groove", margin: "14px" }}>
                     <span style={{}}>
                     <img src={champ.splash_art} alt={champ.name} style={{width: "21px", height: "21px", paddingRight: "3px", paddingTop: "5px"}}/>
                     
@@ -42,12 +42,13 @@ function UserProfile({ champions }) {
     return (
         <div style={{ backgroundColor: "lightgray", paddingBottom: "15px", width: "100%", paddingTop: "10px"}}>
             <p style={{fontSize: "150%", textAlign: "center", fontWeight: "500", textDecorationLine: "underline"}}>Display Name: <b>{currentUser.display_name}</b></p>
-            <div style={{width: "100%", backgroundImage: "linear-gradient(lightgray, rgb(196, 129, 246), lightgray)", display: "grid", gridTemplateColumns: "500px 300px 500px", gridTemplateRows: "auto", justifyContent: "center"}}>
+            <div style={{width: "100%", backgroundImage: "linear-gradient(lightgray, rgb(196, 129, 246), lightgray)", display: "grid", gridTemplateColumns: "500px 300px 500px", gridTemplateRows: "500px 500px", justifyContent: "center"}}>
             <img src={currentUser.profile_pic} alt="profilePic" style={{ width: "auto", verticalAlign: "top", float: "left", marginLeft: "100px"}}/>
             <img src={image} alt="divider" style={{marginLeft: "auto", marginRight: "auto", width: "auto%", justifySelf: "center"}}/>
-            <span style={{verticalAlign: "top", fontWeight: "500", textAlign: "center", marginRight: "100px", fontSize: "125%"}}>{currentUser.bio} <br style={{marginBottom: "10px"}}/> <b style={{textDecoration: "underline", paddingTop: "40px"}}>Champions You Commented On:</b> <br/> {displayChamps} </span>
+            <span style={{verticalAlign: "top", fontWeight: "500", textAlign: "center", marginRight: "100px", fontSize: "125%"}}>{currentUser.bio} <br style={{marginBottom: "15px"}}/> </span>
+            <div style={{marginRight: "100px", float: "right"}}><b style={{textDecoration: "underline", paddingTop: "40px", marginTop: "100px", }}>Champions You Commented On:</b> <br/> {displayChamps} </div>
             </div>
-            <p style={{color: "GrayText", justifyContent: "center", textAlign: "center"}}> <i >“Knowing yourself is the beginning of all wisdom.” -Aristotle</i></p>
+            <p style={{color: "GrayText", justifyContent: "center", textAlign: "center", backgroundColor: "none"}}> <i >“Knowing yourself is the beginning of all wisdom.” -Aristotle</i></p>
         </div>
     )
 }

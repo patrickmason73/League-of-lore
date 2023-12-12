@@ -15,7 +15,7 @@ function Search({ champions, handleAddComment, searchText, setSearchText, handle
   }, [champions])
 
     return (
-        <div style={{backgroundColor: "lightgray", paddingTop: "20px", paddingBottom: "100px"}}>
+        <div style={{backgroundImage: "linear-gradient(to right, #fc5c7d, #6a82fb)", paddingTop: "20px", paddingBottom: "100px"}}>
             <form onSubmit={handleSubmit} style={{textAlign: "center"}}>
                 <label style={{fontWeight: "500", fontSize: "125%"}}>
                     <u>Search By Champion Name: </u>

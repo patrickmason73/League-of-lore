@@ -177,12 +177,12 @@ function App() {
          <Routes>
          <Route path="/*" element={
            <>
-         <Home champions={champions} handleAddComment={handleAddComment} handleDeleteComment={handleDeleteComment} handleCommentUpdate={handleCommentUpdate} errors={errors} setErrors={setErrors}/>
+         <Home champions={champions} handleAddComment={handleAddComment} handleDeleteComment={handleDeleteComment} handleCommentUpdate={handleCommentUpdate} errors={errors} setErrors={setErrors} navigate={navigate}/>
          </>
          }>
          </Route> 
          <Route path="/signup" element={
-          <Signup handleSignUp={handleSignUp} errors={errors}/>
+          <Signup handleSignUp={handleSignUp} errors={errors} navigate={navigate}/>
          }>
          </Route>
          <Route path="/login" element={
