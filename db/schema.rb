@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_26_221538) do
+ActiveRecord::Schema.define(version: 2023_12_12_202005) do
 
+  # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "abilities", force: :cascade do |t|
@@ -62,8 +63,61 @@ ActiveRecord::Schema.define(version: 2023_11_26_221538) do
     t.index ["champion_region_id"], name: "index_champions_on_champion_region_id"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "post_comments", force: :cascade do |t|
+    t.text "content"
+    t.bigint "capstone_user_id", null: false
+    t.bigint "user_post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["capstone_user_id"], name: "index_post_comments_on_capstone_user_id"
+    t.index ["user_post_id"], name: "index_post_comments_on_user_post_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.string "img_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_posts", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.string "img_url"
+    t.bigint "capstone_user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["capstone_user_id"], name: "index_user_posts_on_capstone_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.string "display_name"
+    t.text "bio"
+    t.string "img_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "abilities", "champions"
   add_foreign_key "champion_comments", "capstone_users"
   add_foreign_key "champion_comments", "champions"
   add_foreign_key "champions", "champion_regions"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "post_comments", "capstone_users"
+  add_foreign_key "post_comments", "user_posts"
+  add_foreign_key "user_posts", "capstone_users"
 end

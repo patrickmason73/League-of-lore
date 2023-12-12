@@ -14,14 +14,15 @@ import { UserContext } from './contexts/UserContext';
     backgroundColor: "black",
     padding: "10px",
     // position: "fixed",
-    paddingTop: "3px"
+    paddingTop: "3px",
+    paddingBottom: "15px"
   }
 
 function Navbar({ logout, navigate }) {
     const {currentUser} = useContext(UserContext)
 
     return (
-        <div style={{position: 'fixed', display: 'block', borderStyle: "groove", borderColor: "black"}}>
+        <div style={{position: 'fixed', display: 'block', borderTopStyle: "groove", borderRightStyle: "groove", borderLeftStyle: "groove", borderColor: "black"}}>
           {currentUser !== null && <strong style={{fontSize:"150%", fontWeight: "800", backgroundImage: "linear-gradient(to right, #fc5c7d, #6a82fb)", display: 'block', borderStyle: "solid"}}>Welcome back, {currentUser.display_name}</strong>}
             <nav style={navStyle}>
               

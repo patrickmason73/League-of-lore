@@ -2,6 +2,8 @@ class CapstoneUser < ApplicationRecord
     has_secure_password
     has_many :champion_comments, dependent: :destroy
     has_many :champions, through: :champion_comments
+    has_many :user_posts, dependent: :destroy
+    has_many :post_comments, dependent: :destroy
 
     validates :profile_pic, presence: true, format: {with: /\.(png|jpg)\Z/i}
     validates :username, presence: true, uniqueness: true

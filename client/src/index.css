@@ -21,6 +21,8 @@ body {
 .lol-logo {
   margin-left: auto;
   margin-right: 15px;
+  margin-top: 3px;
+  padding-top: 3px;
   /* align-items: "right";
   justify-content: "right"; */
 }

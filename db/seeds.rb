@@ -111,3 +111,5 @@ release_date: '2022-06-09', lore: "A nightmarish empress created from the raw ma
 
 blitzcrank = Champion.create(name: 'Blitzcrank', champion_region_id: zaun.id, splash_art: 'https://images.contentstack.io/v3/assets/blt187521ff0727be24/blt1487c53fac3d6842/60ee0be35397524ead3890bd/Blitzcrank_0.jpg', 
 release_date: '2009-09-02', lore: "A behemoth of burnished metal, steam, and crackling electricity, Blitzcrank walks the streets of Zaun in a tireless effort to improve the undercity and give aid to those in need. Created to descend into the most caustic and dangerous of environments in Zaun to dispose of harmful waste, they have evolved beyond the bounds of their original programming, thanks to the genius of their inventor, and the mysterious power of hextech.")
+
+
