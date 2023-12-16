@@ -1,15 +1,21 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
 Champion.destroy_all
 ChampionRegion.destroy_all
+CapstoneUser.destroy_all
+ChampionComment.destroy_all
+UserPost.destroy_all
+PostComment.destroy_all
+
+user = CapstoneUser.create(bio: "User's bio.", display_name: "userDisplayName", username: "userUserName", password_digest: BCrypt::Password.create('userPassword'), profile_pic: 'https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/6/6d/Skin_Loading_Screen_Muay_Thai_Lee_Sin.jpg')
+
+user_post = UserPost.create(capstone_user_id: user.id, content: "I despise this character. I think the balance is terrible, the entire champion design is based around doing all damage from one ability. Her lore is lame, but I can excuse that. Playing against this monstrosity just feels terrible, hope they remove this character some day.", title: "Zoe: My Least Favorite Character", img_url: "https://images.contentstack.io/v3/assets/blt187521ff0727be24/blta5516014683545a0/60ee1444a471a34acb2c2016/zoe-splash.jpg")
 
 runeterra = ChampionRegion.create(name: 'Runeterra', description: 'Composed of both the material and spirit realms, Runeterra is all that separates the celestial powers of creation from the abyssal threat of all undoing. This is a magical world unlike any other--inhabited by peoples both fierce and wondrous.')
+
+aatrox = Champion.create(name: 'Aatrox', champion_region_id: runeterra.id, splash_art: 'https://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/uncentered/266/266000.jpg', 
+release_date: '2013-06-13', lore: 'Once honored defenders of Shurima against the Void, Aatrox and his brethren would eventually become an even greater threat to Runeterra, and were defeated only by cunning mortal sorcery. But after centuries of imprisonment, Aatrox was the first to find freedom once more, corrupting and transforming those foolish enough to try and wield the magical weapon that contained his essence. Now, with stolen flesh, he walks Runeterra in a brutal approximation of his previous form, seeking an apocalyptic and long overdue vengeance.')
+
+comment = ChampionComment.create(capstone_user_id: user.id, champion_id: aatrox.id, content: "Very interesting, cool design, hate the execution.")
 
 bandle_city = ChampionRegion.create(name: 'Bandle City', description: 'Opinions differ as to where exactly the home of the yordles is to be found, though a handful of mortals claim to have traveled unseen pathways to a land of curious enchantment beyond the material realm. They tell of a place of unfettered magic, where the foolhardy can be led astray by myriad wonders, and end up lost in a dream...
 In Bandle City, it is said that every sensation is heightened for non-yordles. Colors are brighter. Food and drink intoxicates the senses for years and, once tasted, will never be forgotten. The sunlight is eternally golden, the waters crystal clear, and every harvest brings a fruitful bounty. Perhaps some of these claims are true, or maybe none—for no two taletellers ever seem to agree on what they actually saw. Only one thing is known for certain, and that is the timeless quality of Bandle City and its inhabitants. This might explain why those mortals who find their way back often appear to have aged tremendously, while many more never return at all.')
@@ -61,8 +67,7 @@ To be a mortal touched by this power is to suffer an agonizing glimpse of eterna
 zaun = ChampionRegion.create(name: 'Zaun', description: 'Zaun is a large, undercity district, lying in the deep canyons and valleys threading Piltover. What light reaches below is filtered through fumes leaking from the tangles of corroded pipework and reflected from the stained glass of its industrial architecture. Zaun and Piltover were once united, but are now separate, yet symbiotic societies. Though it exists in perpetual smogged twilight, Zaun thrives, its people vibrant and its culture rich. Piltover’s wealth has allowed Zaun to develop in tandem; a dark mirror of the city above. Many of the goods coming to Piltover find their way into Zaun’s black markets, and hextech inventors who find the restrictions placed upon them in the city above too restrictive often find their dangerous researches welcomed in Zaun. Unfettered development of volatile technologies and reckless industry has rendered whole swathes of Zaun polluted and dangerous. Streams of toxic runoff stagnate in the city’s lower reaches, but even here people find a way to exist and prosper.')
 
 
-aatrox = Champion.create(name: 'Aatrox', champion_region_id: runeterra.id, splash_art: 'https://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/uncentered/266/266000.jpg', 
-release_date: '2013-06-13', lore: 'Once honored defenders of Shurima against the Void, Aatrox and his brethren would eventually become an even greater threat to Runeterra, and were defeated only by cunning mortal sorcery. But after centuries of imprisonment, Aatrox was the first to find freedom once more, corrupting and transforming those foolish enough to try and wield the magical weapon that contained his essence. Now, with stolen flesh, he walks Runeterra in a brutal approximation of his previous form, seeking an apocalyptic and long overdue vengeance.')
+
 
 jax = Champion.create(name: 'Jax', champion_region_id: runeterra.id, splash_art: 'https://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/uncentered/24/24000.jpg', 
 release_date: '2009-02-21', lore: 'Runeterras greatest weapons master, Jax is the only survivor of the Kohari—champions sworn to the defense of Icathia. But when the Void was unleashed against the Shuriman empire’s Ascended Host, Icathia was destroyed, leaving Jax without a home or purpose. He gathered the “last light of Icathia”, a symbol of his hope to one day defeat the Void, and now travels the world, searching for warriors strong enough to face the coming darkness by his side.')

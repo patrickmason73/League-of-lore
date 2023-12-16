@@ -8,8 +8,4 @@ class ChampionsController < ApplicationController
         render json: sorted_champions, include: [:champion_comments, :capstone_users, :champion_region]
     end
 
-    # def search
-    #     champ = Champion.find_by(name: params[:name].capitalize)
-    #     render json: champ, include: [:champion_comments, :capstone_users]
-    # end
 end

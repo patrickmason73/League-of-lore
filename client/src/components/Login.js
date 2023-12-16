@@ -21,7 +21,6 @@ function Login() {
             if (res.ok) {
                 res.json().then((user) => {
                     setCurrentUser(user)
-                    console.log(currentUser)
                 });
             } else {
                 res.json().then((err) => setErrors(err.errors))
@@ -33,7 +32,7 @@ function Login() {
     return (
         <div style={{padding: "10px", backgroundImage: "linear-gradient(to right, #fc5c7d, #6a82fb)"}}>
             <form onSubmit={handleSubmit} style={{padding: "10px", display: 'block'}}>
-                <label style={{padding: '5px', margin: '5px', display: "block"}}>
+                <label style={{padding: '5px', margin: '5px', display: "block", fontSize: "120%"}}>
                    <b> Username: </b>
                     <input
                      type="text"
@@ -43,7 +42,7 @@ function Login() {
                     />
                 </label>
                 <br />
-                <label style={{padding: '5px', margin: '5px', display: "block"}}>
+                <label style={{padding: '5px', margin: '5px', display: "block", fontSize: "120%"}}>
                    <b> Password: </b>
                     <input 
                      type="password"

@@ -6,6 +6,7 @@ import CommentDisplay from "./CommentDisplay";
 function NewComment({ champion, handleAddComment, handleDeleteComment, handleCommentUpdate, navigate }) {
 const {currentUser} = useContext(UserContext)
 const [text, setText] = useState("")
+const [display, setDisplay] = useState(false)
 
 
  function handleSubmit(e) {
@@ -48,10 +49,13 @@ const [text, setText] = useState("")
             </form>
         : <b style={{textDecoration: "underline", cursor: "pointer", fontSize: "120%", color: "blue", WebkitTextStroke: "0.3px black"}} onClick={() => navigate("/signup")}>Log in or sign up to comment!</b>} 
         </div>
+        <button className="button-64" onClick={() => setDisplay(current => !current)} style={{marginLeft: "30px"}}><span>{display ? "Collapse" : "Display Comments"}</span></button>
+        {display ?
         <div style={{borderStyle: "groove", margin: "5px", backgroundImage: "linear-gradient(to right, #434343 0%, black 100%)", borderColor: "black"}}>
         <h3 style={{marginLeft: "10px", fontSize: "150%", color: "antiquewhite", WebkitTextStroke: "1.2px black"}}>User Comments:</h3>
         {displayChampComments}
         </div>
+        :null}
      </div>
 
     )

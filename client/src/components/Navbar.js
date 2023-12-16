@@ -51,7 +51,7 @@ function Navbar({ logout, navigate }) {
                  Sign up
                 </NavLink>
                 
-                <NavLink to="/posts/new"
+                <NavLink to="/posts"
               
               className="button-1"
               role='button'

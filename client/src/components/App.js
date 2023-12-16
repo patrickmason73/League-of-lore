@@ -7,6 +7,7 @@ import Signup from "./Signup";
 import UserProfile from "./UserProfile";
 import Login from "./Login";
 import Search from "./Search";
+import UserPosts from "./UserPosts";
 
 
 
@@ -17,6 +18,7 @@ function App() {
  const [errors, setErrors] = useState([])
  const [champions, setChampions] = useState([])
  const [searchText, setSearchText] = useState("")
+ const [userPosts, setUserPosts] = useState([])
 
 
  useEffect(() => {
@@ -25,6 +27,15 @@ function App() {
     .then((data) => {
         setChampions(data)
         console.log(data)
+    })
+ }, [])
+
+ useEffect(() => {
+  fetch('/user_posts')
+  .then((res) => res.json())
+  .then((data) => {
+      setUserPosts(data)
+      console.log(data)
     })
  }, [])
  
@@ -167,6 +178,120 @@ function App() {
         
       }
 
+    function addUserPost(title, content, imgURL, currentUser) {
+        fetch("/user_posts", {
+          method: "POST",
+          headers: {
+            "Content-Type" : "application/json",
+          },
+          body: JSON.stringify({
+            title,
+            content,
+            img_url: imgURL,
+            capstone_user: {currentUser},
+          }),
+        }).then((res) => {
+          if (res.ok) {
+            res.json().then((data) => {
+              setUserPosts([data, ...userPosts])
+              setErrors([])
+              navigate("/posts")
+            })
+          } else {
+            res.json().then((err) => setErrors(err.errors))
+          }
+        })
+      }  
+
+      function handleAddPostComment(newComment, post) {
+        const postToUpdate = userPosts.find((item) => item.id === post.id)
+        fetch("/post_comments", {
+         method: "POST",
+         headers: {
+          "Content-type": "application/json",
+         },
+         body: JSON.stringify({
+          content: newComment,
+          capstone_user_id: currentUser.id,
+          user_post_id: post.id,
+         }),
+        }
+       ).then((r) => {
+        if (r.ok) {
+          r.json().then((data) => {
+            const updatedPosts = userPosts.map((post) => {
+              if (post === postToUpdate)
+              return {
+                ...postToUpdate,
+                post_comments: [data, ...postToUpdate.post_comments],
+              }
+              else {return post}
+            })
+            setUserPosts(updatedPosts)
+            setErrors([])
+          })
+        } else {
+          r.json().then((err) => setErrors(err.errors))
+        }
+       })
+      }
+
+      function handleDeletePostComment(commentToDelete, postId) {
+        const postToUpdate = userPosts.find((post) => post.id === postId)
+        fetch(`/post_comments/${commentToDelete.id}`, {
+          method: "DELETE",
+      }).then((res) => {
+          if (res.ok) {
+            const updatedPosts = userPosts.map((post) => {
+              if (post === postToUpdate)
+              return {
+                ...postToUpdate,
+                post_comments: post.post_comments.filter((comment) => {
+                  return comment.id !== commentToDelete.id
+                })
+              }
+              else {return post}
+            })
+            setUserPosts(updatedPosts)
+            setErrors([])
+          }
+          else {res.json().then((err) => setErrors(err.errors))}
+      })
+      }
+
+      function handlePostCommentUpdate(newComment, postId, comment) {
+        const postToUpdate = userPosts.find((post) => post.id === postId)
+        fetch(`/post_comments/${comment.id}`, {
+          method: "PATCH", 
+          headers: {
+              "Content-type" : "application/json",
+          },
+          body: JSON.stringify({
+              content: newComment,
+          }),
+      })
+      .then((r) => r.json())
+      .then((data) => {
+        const updatedPosts = userPosts.map((post) => {
+          if (post === postToUpdate)
+          return {
+            ...postToUpdate,
+            post_comments: post.post_comments.map((comment) => {
+              if (comment.id === data.id) {
+                return data;
+            }
+            else {
+                return comment;
+            }
+            })
+          }
+          else {return post}
+        })
+        setUserPosts(updatedPosts)
+      })
+        
+      }
+
 
     return (
         <div>
@@ -187,9 +312,12 @@ function App() {
          </Route>
          <Route path="/login" element={
           <>
-            {currentUser ? <UserProfile champions={champions}/> : <Login />}
+            {currentUser ? <UserProfile champions={champions} userPosts={userPosts}/> : <Login />}
           </>
          }>
+
+         </Route>
+         <Route path="/posts" element={<UserPosts userPosts={userPosts} addUserPost={addUserPost} errors={errors} handleAddPostComment={handleAddPostComment} handlePostCommentUpdate={handlePostCommentUpdate} handleDeletePostComment={handleDeletePostComment}/>}>
 
          </Route>
          <Route path="/search" element={
