@@ -17,4 +17,4 @@ You can use the following commands to run the application locally:
 
 ## Introduction
 
-This is an app that hosts a database of League Of Legends Characters. Characters can be sorted by their region, or alphabetically. Users can make an account, once logged in, a user can comment under a character's lore. They can also use the 'General Forum' tab to make posts about anything League Of Legends related, users can also comment on posts from other users. 
+This is an app that hosts a database of League Of Legends Characters. Characters can be sorted by their region, or alphabetically. Users can make an account, once logged in, a user can comment under a character's lore. They can also use the 'General Forum' tab to make posts about anything League Of Legends related, users can also comment on posts from other users. User comments on Characters, as well as their posts and general account info will be displayed on their account page once logged in.
