@@ -15,7 +15,6 @@ function App() {
 
  const {currentUser, setCurrentUser} = useContext(UserContext)
  const navigate = useNavigate();
- const [errors, setErrors] = useState([])
  const [champions, setChampions] = useState([])
  const [searchText, setSearchText] = useState("")
  const [userPosts, setUserPosts] = useState([])
@@ -51,7 +50,7 @@ function App() {
         })
       }
   
- function handleSignUp(username, password, passwordConfirmation, displayName, profilePic, bio) {
+ function handleSignUp(username, password, passwordConfirmation, displayName, profilePic, bio, setErrors) {
     
         fetch("/signup", {
             method: "POST",
@@ -79,7 +78,7 @@ function App() {
         })
       }
 
-   function handleAddComment(newComment, champion) {
+   function handleAddComment(newComment, champion, setErrors, setDisplay) {
         const championToUpdate = champions.find((champ) => champ.id === champion.id)
         fetch("/champion_comments", {
          method: "POST",
@@ -105,6 +104,7 @@ function App() {
               else {return champion}
             })
             setChampions(updatedChampions)
+            setDisplay(true)
             setErrors([])
           })
         } else {
@@ -139,13 +139,12 @@ function App() {
               else {return champ}
             })
             setChampions(updatedChampions)
-            setErrors([])
+            
           }
-          else {res.json().then((err) => setErrors(err.errors))}
       })
       }
 
-      function handleCommentUpdate(newComment, champId, comment) {
+      function handleCommentUpdate(newComment, champId, comment, setErrors, setEditing) {
         const championToUpdate = champions.find((champ) => champ.id === champId)
         fetch(`/champion_comments/${comment.id}`, {
           method: "PATCH", 
@@ -156,8 +155,9 @@ function App() {
               content: newComment,
           }),
       })
-      .then((r) => r.json())
-      .then((data) => {
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((data) => {
         const updatedChampions = champions.map((champ) => {
           if (champ === championToUpdate)
           return {
@@ -174,11 +174,14 @@ function App() {
           else {return champ}
         })
         setChampions(updatedChampions)
-      })
-        
+        setEditing(false)
+        setErrors([])
+      })}
+        else {r.json().then((err) => setErrors(err.errors))}
       }
+    )}
 
-    function addUserPost(title, content, imgURL, currentUser) {
+    function addUserPost(title, content, imgURL, currentUser, setErrors, setCreating) {
         fetch("/user_posts", {
           method: "POST",
           headers: {
@@ -194,6 +197,7 @@ function App() {
           if (res.ok) {
             res.json().then((data) => {
               setUserPosts([data, ...userPosts])
+              setCreating(false)
               setErrors([])
               navigate("/posts")
             })
@@ -203,7 +207,7 @@ function App() {
         })
       }  
 
-      function handleAddPostComment(newComment, post) {
+      function handleAddPostComment(newComment, post, setErrors) {
         const postToUpdate = userPosts.find((item) => item.id === post.id)
         fetch("/post_comments", {
          method: "POST",
@@ -253,13 +257,11 @@ function App() {
               else {return post}
             })
             setUserPosts(updatedPosts)
-            setErrors([])
           }
-          else {res.json().then((err) => setErrors(err.errors))}
       })
       }
 
-      function handlePostCommentUpdate(newComment, postId, comment) {
+      function handlePostCommentUpdate(newComment, postId, comment, setErrors, setEditing) {
         const postToUpdate = userPosts.find((post) => post.id === postId)
         fetch(`/post_comments/${comment.id}`, {
           method: "PATCH", 
@@ -270,8 +272,9 @@ function App() {
               content: newComment,
           }),
       })
-      .then((r) => r.json())
-      .then((data) => {
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((data) => {
         const updatedPosts = userPosts.map((post) => {
           if (post === postToUpdate)
           return {
@@ -288,8 +291,58 @@ function App() {
           else {return post}
         })
         setUserPosts(updatedPosts)
-      })
-        
+        setEditing(false)
+        setErrors([])
+      }) 
+      } else {r.json().then((err) => setErrors(err.errors))}
+    })}
+
+      function updateUser(newName, newBio, newProfilePic, setErrors, setEditingName) {
+        fetch(`/capstone_users/${currentUser.id}`, {
+          method: "PATCH",
+          headers: {
+              "Content-type": "application/json",
+             },
+             body: JSON.stringify({
+              display_name: newName,
+              bio: newBio,
+              profile_pic: newProfilePic,
+             }),
+      }).then((res) => {
+          if (res.ok) {
+              res.json().then((user) => {
+                  setCurrentUser(user)
+                  const updatedPosts = userPosts.map((post) => {
+                      if (post.capstone_user.id === currentUser.id) {
+                        return {
+                          ...post,
+                          capstone_user: user,
+                        }
+                      }
+                      else {return post}
+                  })
+                  setUserPosts(updatedPosts)
+
+                  const updatedChampions = champions.map((champ) => {
+                   return {...champ, 
+                    champion_comments: champ.champion_comments.map((comment) => {
+                      if (comment.capstone_user_id === currentUser.id) {
+                        return {
+                          ...comment,
+                          capstone_user: user,
+                        }
+                      }
+                      else {return comment}
+                    })
+              }}) 
+                  setChampions(updatedChampions)
+                  setEditingName(false)
+                  setErrors([])
+              });
+          } else {
+              res.json().then((err) => setErrors(err.errors))
+          }
+      });
       }
 
 
@@ -302,22 +355,25 @@ function App() {
          <Routes>
          <Route path="/*" element={
            <>
-         <Home champions={champions} handleAddComment={handleAddComment} handleDeleteComment={handleDeleteComment} handleCommentUpdate={handleCommentUpdate} errors={errors} setErrors={setErrors} navigate={navigate}/>
+         <Home champions={champions} handleAddComment={handleAddComment} handleDeleteComment={handleDeleteComment} handleCommentUpdate={handleCommentUpdate} navigate={navigate}/>
          </>
          }>
          </Route> 
+      
          <Route path="/signup" element={
-          <Signup handleSignUp={handleSignUp} errors={errors} navigate={navigate}/>
+          <>
+         <Signup handleSignUp={handleSignUp} navigate={navigate}/>
+          </>
          }>
          </Route>
          <Route path="/login" element={
           <>
-            {currentUser ? <UserProfile champions={champions} userPosts={userPosts}/> : <Login />}
+            {currentUser ? <UserProfile champions={champions} userPosts={userPosts} updateUser={updateUser} /> : <Login />}
           </>
          }>
 
          </Route>
-         <Route path="/posts" element={<UserPosts userPosts={userPosts} addUserPost={addUserPost} errors={errors} handleAddPostComment={handleAddPostComment} handlePostCommentUpdate={handlePostCommentUpdate} handleDeletePostComment={handleDeletePostComment}/>}>
+         <Route path="/posts" element={<UserPosts userPosts={userPosts} addUserPost={addUserPost} handleAddPostComment={handleAddPostComment} handlePostCommentUpdate={handlePostCommentUpdate} handleDeletePostComment={handleDeletePostComment}/>}>
 
          </Route>
          <Route path="/search" element={

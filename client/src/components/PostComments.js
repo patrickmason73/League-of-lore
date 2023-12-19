@@ -2,15 +2,17 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "./contexts/UserContext";
 import PostCommentDisplay from "./PostCommentDisplay";
 
-function PostComments({ post, handleAddPostComment, errors, handlePostCommentUpdate, handleDeletePostComment }) {
+function PostComments({ post, handleAddPostComment, handlePostCommentUpdate, handleDeletePostComment }) {
     const {currentUser} = useContext(UserContext)
     const [display, setDisplay] = useState(false)
     const [text, setText] = useState("")
+    const [errors, setErrors] = useState([])
 
     function handleCommentSubmit(e) {
         e.preventDefault();
-        handleAddPostComment(text, post)
+        handleAddPostComment(text, post, setErrors)
         setText("")
+        setDisplay(true)
      }
 
     const comments = post.post_comments.map((comment) => {
@@ -41,9 +43,9 @@ function PostComments({ post, handleAddPostComment, errors, handlePostCommentUpd
                                 </label>
                                 <br />
                                 <button type="submit" className="button-64"><span>Post Comment</span></button>
-                                <ul>{errors && errors.map((err) => (
-                                    <li key={err}>{err}</li>
-                                ))}</ul>
+                                <ul style={{listStyle: "none"}}>{errors && errors.map((err) => (
+                                     <li key={err} style={{fontWeight: "700"}}><u>ERROR:</u> {err}</li>
+                               ))}</ul>
                             </form>}
              {display ?
                  <div>

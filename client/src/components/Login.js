@@ -3,7 +3,7 @@ import { UserContext } from "./contexts/UserContext";
 
 
 function Login() {
-    const {currentUser, setCurrentUser} = useContext(UserContext)
+    const {setCurrentUser} = useContext(UserContext)
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -21,6 +21,7 @@ function Login() {
             if (res.ok) {
                 res.json().then((user) => {
                     setCurrentUser(user)
+                    setErrors([])
                 });
             } else {
                 res.json().then((err) => setErrors(err.errors))
@@ -53,12 +54,10 @@ function Login() {
                 </label>
                 <br />
 
-                <button type="submit" style={{marginLeft: "100px"}}>Login</button>
-                <ul>
-                    {errors.map((error) => (
-                        <li key={error.id}>{error}</li>
-                    ))}
-                </ul>
+                <button type="submit" className="button-64" style={{marginLeft: "100px"}}><span style={{fontWeight: "800", padding: "6px", paddingInline: "24px"}}>Login</span></button>
+                <ul style={{listStyle: "none"}}>{errors && errors.map((err) => (
+                    <li key={err} style={{fontWeight: "700"}}><u>ERROR:</u> {err}</li>
+            ))}</ul>
             </form>
         </div>
     )

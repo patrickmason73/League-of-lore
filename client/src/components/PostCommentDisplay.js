@@ -2,17 +2,17 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "./contexts/UserContext";
 
 
-function PostCommentDisplay({ post, comment, handlePostCommentUpdate, handleDeletePostComment, errors }) {
+function PostCommentDisplay({ post, comment, handlePostCommentUpdate, handleDeletePostComment }) {
     const {currentUser} = useContext(UserContext)
     const [editing, setEditing] = useState(false)
     const [newComment, setNewComment] = useState()
+    const [errors, setErrors] = useState([])
 
     const commentUser = comment.capstone_user
 
     function handleCommentSubmit(e, comment) {
         e.preventDefault();
-        handlePostCommentUpdate(newComment, post.id, comment)
-        setEditing(false)
+        handlePostCommentUpdate(newComment, post.id, comment, setErrors, setEditing)
      }
 
     return (
@@ -38,9 +38,9 @@ function PostCommentDisplay({ post, comment, handlePostCommentUpdate, handleDele
                            </label>
                            <br/>
                            <button type="submit" className="button-64" style={{marginLeft: "20px", marginBottom: "10px"}}><span>Update Comment</span></button>
-                           <ul>{errors && errors.map((err) => (
-                         <li key={err}>{err}</li>
-                     ))}</ul>
+                           <ul style={{listStyle: "none"}}>{errors && errors.map((err) => (
+                            <li key={err} style={{fontWeight: "700"}}><u>ERROR:</u>{err}</li>
+                        ))}</ul>
                    </form>
                        : null}
         </article>

@@ -4,14 +4,14 @@ import { UserContext } from "./contexts/UserContext";
 function CommentDisplay({ comment, champion, handleDeleteComment, handleCommentUpdate }) {
     const {currentUser} = useContext(UserContext)
     const [editing, setEditing] = useState(false)
-    const [newComment, setNewComment] = useState()
+    const [newComment, setNewComment] = useState("")
+    const [errors, setErrors] = useState([])
 
     const commentUser = champion.capstone_users.find((user) => {if (user !== null) {return (user.id === comment.capstone_user_id)} else {return null}})
 
     function handleCommentSubmit(e, comment) {
         e.preventDefault();
-        handleCommentUpdate(newComment, champion.id, comment)
-        setEditing(false)
+        handleCommentUpdate(newComment, champion.id, comment, setErrors, setEditing)  
      }
 
     return (
@@ -39,7 +39,10 @@ function CommentDisplay({ comment, champion, handleDeleteComment, handleCommentU
                                 />
                             </label>
                             <br/>
-                            <button type="submit" className="button-64" style={{marginLeft: "20px", marginBottom: "10px"}}><span class="text">Update Comment</span></button>
+                            <button type="submit" className="button-64" style={{marginLeft: "20px", marginBottom: "10px"}}><span>Update Comment</span></button>
+                            <ul style={{listStyle: "none"}}>{errors && errors.map((err) => (
+                                <li key={err} style={{fontWeight: "700"}}><u>ERROR:</u> {err}</li>
+                            ))}</ul>
                     </form>
                         : null}
         </article>

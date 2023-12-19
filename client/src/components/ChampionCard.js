@@ -15,7 +15,7 @@ function ChampionCard({ champion, handleAddComment, handleDeleteComment, handleC
            
             <img className="champ-img" style={{display: "block", margin: "auto", transition: "background-color 300ms", backgroundColor: "ActiveBorder"}} src={champion.splash_art} alt={champion.name} ></img>
             <p style={{ textAlign: "center", fontWeight: '500', borderStyle: "groove", borderColor: "black", margin: "20px", padding: "5px", fontSize: "120%" }}>{champion.lore}</p>
-            <NewComment champion={champion} handleAddComment={handleAddComment} handleDeleteComment={handleDeleteComment} handleCommentUpdate={handleCommentUpdate} navigate={navigate}/>
+            <NewComment champion={champion} handleAddComment={handleAddComment} handleDeleteComment={handleDeleteComment} handleCommentUpdate={handleCommentUpdate} navigate={navigate} />
         </div>
     )
 }

@@ -3,18 +3,19 @@ import { UserContext } from './contexts/UserContext';
 import PostComments from "./PostComments";
 
 
-function UserPosts({ userPosts, addUserPost, errors, handleAddPostComment, handlePostCommentUpdate, handleDeletePostComment }) {
+function UserPosts({ userPosts, addUserPost, handleAddPostComment, handlePostCommentUpdate, handleDeletePostComment }) {
     const {currentUser} = useContext(UserContext)
     const [creating, setCreating] = useState(false)
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
     const [imgURL, setImgURL] = useState("")
+    const [errors, setErrors] = useState([])
     
 
 
     function handleSubmit(e) {
         e.preventDefault();
-        addUserPost(title, content, imgURL, currentUser)
+        addUserPost(title, content, imgURL, currentUser, setErrors, setCreating)
     }
 
     const displayPosts = userPosts.map((post) => {
@@ -22,14 +23,14 @@ function UserPosts({ userPosts, addUserPost, errors, handleAddPostComment, handl
         return (
             <div key={post.id} style={{paddingTop: "0px"}}>
                 {userPosts ? 
-                    <article style={{borderStyle: "groove", borderColor: "black", borderWidth: "7px", width: "80%", textAlign: "center", marginLeft: "auto", marginRight: "auto", paddingTop: "10px", marginTop: "60px"}}>
+                    <article style={{borderStyle: "groove", borderColor: "black", borderWidth: "7px", width: "80%", textAlign: "center", marginLeft: "auto", marginRight: "auto", paddingTop: "10px", marginTop: "40px"}}>
                         <p style={{fontWeight: "800", fontSize: "130%", marginLeft: "15px", marginRight: "20px", marginTop: "20px", textShadow: "0 0 1px #FF0000, 0 0 2px #0000FF", marginBottom: "0px", textAlign: "left"}}><img src={post.capstone_user.profile_pic} alt="pfp" style={{height: "21px", width: "21px", paddingRight: "3px"}} />{post.capstone_user.display_name}</p>
                         <h1 style={{textAlign: "left", marginLeft: "50px", fontWeight: "800", marginRight: "20px"}}>{post.title}</h1>
                         <img src={post.img_url} alt={post.title} style={{width: "50%", borderStyle: "groove", borderColor: "black"}}/>
                         <br />
-                        <p style={{textAlign: "left", marginLeft: "20px", marginRight: "20px"}}>{post.content}</p>
+                        <p style={{textAlign: "left", marginLeft: "20px", marginRight: "20px", fontWeight: "500"}}>{post.content}</p>
                         <br /> 
-                      <PostComments post={post} handleAddPostComment={handleAddPostComment} errors={errors} handlePostCommentUpdate={handlePostCommentUpdate} handleDeletePostComment={handleDeletePostComment}/>
+                      <PostComments post={post} handleAddPostComment={handleAddPostComment} handlePostCommentUpdate={handlePostCommentUpdate} handleDeletePostComment={handleDeletePostComment}/>
                     </article>
                  :null}
             </div>
@@ -46,11 +47,11 @@ function UserPosts({ userPosts, addUserPost, errors, handleAddPostComment, handl
             {creating ? 
                 <form onSubmit={handleSubmit} style={{paddingLeft: "60px", paddingTop: "40px", paddingBottom: "20px", borderBottomStyle: "groove", borderBottomColor: "black"}}>
                     <label>
-                     <h2>Title:
+                     <h2>Title: 
                         <input 
                         type="text"
                         id="title"
-                        style={{height:"35px", width: "500px" ,fontSize: "14pt", backgroundColor: "black", color: "white", borderStyle: "groove", borderRadius: "10px", borderWidth: "2px"}}
+                        style={{height:"35px", width: "500px", marginLeft: "3px" ,fontSize: "14pt", backgroundColor: "black", color: "white", borderStyle: "groove", borderRadius: "10px", borderWidth: "2px"}}
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         />
@@ -64,7 +65,7 @@ function UserPosts({ userPosts, addUserPost, errors, handleAddPostComment, handl
                         cols="80"
                         type="text"
                         id="content"
-                        style={{backgroundColor: "black", color: "white", borderStyle: "groove", borderRadius: "10px", borderWidth: "2px"}}
+                        style={{backgroundColor: "black", color: "white", borderStyle: "groove", borderRadius: "10px", borderWidth: "2px", padding: "3px"}}
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
                         />
@@ -76,17 +77,17 @@ function UserPosts({ userPosts, addUserPost, errors, handleAddPostComment, handl
                         <input 
                         type="text"
                         id="imgURL"
-                        style={{width: "700px", height: "20px", fontSize: "10pt", backgroundColor: "black", color: "white", borderStyle: "groove", borderRadius: "10px", borderWidth: "2px", marginLeft: "5px"}}
+                        style={{width: "700px", height: "20px", padding: "3px", fontSize: "10pt", backgroundColor: "black", color: "white", borderStyle: "groove", borderRadius: "10px", borderWidth: "2px", marginLeft: "5px"}}
                         value={imgURL}
                         onChange={(e) => setImgURL(e.target.value)}
                         />
                     </label>
                     <br/>
                     <br/>
-                    <button type="submit">CREATE POST</button>
-                    <ul>{errors && errors.map((err) => (
-                         <li key={err}>{err}</li>
-                     ))}</ul>
+                    <button className="button-85" type="submit">CREATE POST</button>
+                    <ul style={{listStyle: "none", paddingLeft: "5px"}}>{errors && errors.map((err) => (
+                        <li key={err} style={{fontWeight: "700"}}><u>ERROR:</u> {err}</li>
+                    ))}</ul>
                 </form>
             :null }
            <div>{displayPosts}</div> 

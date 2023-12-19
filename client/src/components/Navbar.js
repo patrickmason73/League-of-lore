@@ -22,7 +22,7 @@ function Navbar({ logout, navigate }) {
     const {currentUser} = useContext(UserContext)
 
     return (
-        <div style={{position: 'fixed', display: 'block', borderTopStyle: "groove", borderRightStyle: "groove", borderLeftStyle: "groove", borderColor: "black"}}>
+        <div style={{position: 'fixed', display: 'block', borderTopStyle: "groove", borderRightStyle: "groove", borderLeftStyle: "groove", borderColor: "black", zIndex: "+1"}}>
           {currentUser !== null && <strong style={{fontSize:"150%", fontWeight: "800", backgroundImage: "linear-gradient(to right, #fc5c7d, #6a82fb)", display: 'block', borderStyle: "solid"}}>Welcome back, {currentUser.display_name}</strong>}
             <nav style={navStyle}>
               
@@ -42,7 +42,7 @@ function Navbar({ logout, navigate }) {
                 >
                  {currentUser ? "My Account" : "Login"}
                 </NavLink>
-                
+                {currentUser ? null :
                 <NavLink to="/signup"
               
               className="button-1"
@@ -50,7 +50,7 @@ function Navbar({ logout, navigate }) {
                 >
                  Sign up
                 </NavLink>
-                
+                }   
                 <NavLink to="/posts"
               
               className="button-1"

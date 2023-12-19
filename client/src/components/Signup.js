@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 
 
-function Signup ({ errors, handleSignUp, navigate }) {
+function Signup ({ handleSignUp, navigate }) {
 
 
     const [username, setUsername] = useState("")
@@ -11,11 +11,12 @@ function Signup ({ errors, handleSignUp, navigate }) {
     const [displayName, setDisplayName] = useState("")
     const [profilePic, setProfilePic] = useState("")
     const [bio, setBio] = useState("")
+    const [errors, setErrors] = useState([])
 
 
     function handleSubmit(e) {
         e.preventDefault()
-        handleSignUp(username, password, passwordConfirmation, displayName, profilePic, bio)
+        handleSignUp(username, password, passwordConfirmation, displayName, profilePic, bio, setErrors)
     }
 
     return (
@@ -28,7 +29,7 @@ function Signup ({ errors, handleSignUp, navigate }) {
                 id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                style={{margin: "5px"}}
+                style={{margin: "5px", backgroundColor: "black", color: "white", borderStyle: "groove", borderRadius: "10px", borderWidth: "2px", padding: "5px"}}
                 />
                </h3>
                 
@@ -40,7 +41,7 @@ function Signup ({ errors, handleSignUp, navigate }) {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                style={{margin: "5px"}}
+                style={{margin: "5px", backgroundColor: "black", color: "white", borderStyle: "groove", borderRadius: "10px", borderWidth: "2px", padding: "3px"}}
                 />
                 </h3>
               
@@ -52,7 +53,7 @@ function Signup ({ errors, handleSignUp, navigate }) {
                 id="password_confirmation"
                 value={passwordConfirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
-                style={{margin: "5px"}}
+                style={{margin: "5px", backgroundColor: "black", color: "white", borderStyle: "groove", borderRadius: "10px", borderWidth: "2px", padding: "3px"}}
                 />
                </h3>
 
@@ -65,7 +66,7 @@ function Signup ({ errors, handleSignUp, navigate }) {
                 id="display_name"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
-                style={{margin: "5px"}}
+                style={{margin: "5px", backgroundColor: "black", color: "white", borderStyle: "groove", borderRadius: "10px", borderWidth: "2px", padding: "5px"}}
                 />
             </label>
             <br />
@@ -78,26 +79,26 @@ function Signup ({ errors, handleSignUp, navigate }) {
                  id="content"
                  value={bio}
                  onChange={(e) => setBio(e.target.value)}
-                 style={{margin: "5px"}}
+                 style={{margin: "5px", backgroundColor: "black", color: "white", borderStyle: "groove", borderRadius: "10px", borderWidth: "2px", padding: "5px"}}
                  />
          
 
             </label>
             <br />
             <label>
-               <b>Profile Picture URL:</b> 
+               <b>Profile Picture URL (png or jpg!):</b> 
                 <input 
                 type="text"
                 id="profilePic"
                 value={profilePic}
-                style={{width:"400px", margin: "5px"}}
+                style={{width:"400px", margin: "5px", backgroundColor: "black", color: "white", borderStyle: "groove", borderRadius: "10px", borderWidth: "2px", padding: "5px"}}
                 onChange={(e) => setProfilePic(e.target.value)}
                 />
             </label>
             <br />
             <button className="button-9" type="submit">CREATE ACCOUNT</button>
-            <ul>{errors && errors.map((err) => (
-                <li key={err}>{err}</li>
+            <ul style={{listStyle: "none", paddingLeft: "0px"}}>{errors && errors.map((err) => (
+                <li key={err} style={{fontWeight: "700"}}><u>ERROR:</u> {err}</li>
             ))}</ul>
         </form>
     )

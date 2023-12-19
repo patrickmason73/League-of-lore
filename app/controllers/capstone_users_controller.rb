@@ -10,6 +10,17 @@ class CapstoneUsersController < ApplicationController
         render json: newUser, status: :created
     end
 
+    def update
+      @current_user.update!(user_params)    
+      render json: @current_user, status: :accepted     
+    end
+
+    def destroy
+      user = @current_user
+      user.destroy!
+      head :no_content  
+    end
+
     private
 
     def user_params
