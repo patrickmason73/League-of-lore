@@ -7,8 +7,8 @@ UserPost.destroy_all
 PostComment.destroy_all
 
 # example user
-user = CapstoneUser.create(bio: "User's bio.", display_name: "userDisplayName", username: "userUserName", password_digest: BCrypt::Password.create('userPassword'), profile_pic: 'https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/6/6d/Skin_Loading_Screen_Muay_Thai_Lee_Sin.jpg')
-user2 = CapstoneUser.create(bio: "User2's bio.", display_name: "user2DisplayName", username: "user2UserName", password_digest: BCrypt::Password.create('user2Password'), profile_pic: 'https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/2/24/Rengar_Splash_0_Old.jpg')
+user = CapstoneUser.create(bio: "User's bio.", display_name: "userDisplay", username: "userUserName", password_digest: BCrypt::Password.create('userPassword'), profile_pic: 'https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/6/6d/Skin_Loading_Screen_Muay_Thai_Lee_Sin.jpg')
+user2 = CapstoneUser.create(bio: "User2's bio.", display_name: "user2Display", username: "user2UserName", password_digest: BCrypt::Password.create('user2Password'), profile_pic: 'https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/2/24/Rengar_Splash_0_Old.jpg')
 # example user post
 user_post = UserPost.create(capstone_user_id: user.id, content: "I dislike this character. I think the balance is terrible, and the entire champion design is based around doing all damage from one ability. I feel like her lore isn't unique, but I can excuse that. Playing against this character just feels terrible, I hope they remove this character some day.", title: "Zoe: My Least Favorite Character", img_url: "https://images.contentstack.io/v3/assets/blt187521ff0727be24/blta5516014683545a0/60ee1444a471a34acb2c2016/zoe-splash.jpg")
 # post comment
