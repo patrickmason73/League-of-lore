@@ -38,16 +38,18 @@ function Login() {
                     <input
                      type="text"
                      id="username"
+                     style={{color: "white", backgroundColor: "black"}}
                      value={username}
                      onChange={(e) => setUsername(e.target.value)}
                     />
                 </label>
                 <br />
                 <label style={{padding: '5px', margin: '5px', display: "block", fontSize: "120%"}}>
-                   <b> Password: </b>
+                   <b style={{paddingRight: "3px"}}> Password:  </b>
                     <input 
                      type="password"
                      id="password"
+                     style={{color: "white", backgroundColor: "black"}}
                      value={password}
                      onChange={(e) => setPassword(e.target.value)}
                     />

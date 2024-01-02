@@ -74,7 +74,7 @@ function UserProfile({ champions, userPosts, updateUser }) {
         <div style={{ backgroundImage: "linear-gradient(to right, #fc5c7d, #6a82fb)", width: "100%", paddingTop: "10px", height: "100%"}}>
             <span style={{display: "flex", alignItems: "baseline", columnFill: "balance"}}>
             <span style={{marginRight: "auto", marginLeft: "80px", width: "600px"}}>
-                 <div style={{fontSize: "150%", textAlign: "left", fontWeight: "500", borderStyle: "solid", padding: "3px", marginTop: "20px", paddingBottom: "0px"}}><u>Display Name:</u><span style={{fontWeight: "800"}}> {currentUser.display_name} <br /> <button style={{backgroundColor: "black", color: "white", cursor: "pointer", fontSize: "55%", fontWeight: "600", borderRadius: "4px", marginLeft: "30px", marginBottom: "5px"}} onClick={() => setEditingName(current => !current)}>{editingName ? "Cancel" : "Edit Display Name"}</button></span>
+                 <div style={{fontSize: "150%", textAlign: "left", fontWeight: "500", borderStyle: "solid", padding: "3px", marginTop: "20px", paddingBottom: "0px", maxWidth: "380px"}}><u>Display Name:</u><span style={{fontWeight: "800"}}> {currentUser.display_name} <br /> <button style={{backgroundColor: "black", color: "white", cursor: "pointer", fontSize: "55%", fontWeight: "600", borderRadius: "4px", marginLeft: "30px", marginBottom: "5px"}} onClick={() => setEditingName(current => !current)}>{editingName ? "Cancel" : "Edit Display Name"}</button></span>
                     {editingName ? 
                         <form onSubmit={handleUpdateUser} >
                             <label>
