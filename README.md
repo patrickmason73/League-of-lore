@@ -25,6 +25,6 @@ The app starts on the Home tab, which shows all characters and can be sorted by 
 
 The hope was for the home page to be used as a place for users to comment mainly on character lore, since that is all that is listed along with regions and character art. While the general forum tab can be posts about anything League Of Legends related. I felt this might add a little bit of organization for those who don't care about lore and wish to discuss other aspects of the game. Below is an example walkthrough of the app:
 
-![GIF]https://github.com/patrickmason73/capstone-project/blob/main/CapstoneProjectGif.gif
+![GIF](https://github.com/patrickmason73/capstone-project/blob/main/CapstoneProjectGif.gif)
 
 All character data was collected from the [League Of Legends Official Website](https://www.leagueoflegends.com/)
