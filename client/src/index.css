@@ -103,7 +103,7 @@ code {
 }
 
 
-.button-85 {
+.button-glow {
   padding: 0.6em 2em;
   border: none;
   outline: none;
@@ -122,7 +122,7 @@ code {
   font-weight: 600;
 }
 
-.button-85:before {
+.button-glow:before {
   content: "";
   background: linear-gradient(
     45deg,
@@ -162,7 +162,7 @@ code {
   }
 }
 
-.button-85:after {
+.button-glow:after {
   z-index: -1;
   content: "";
   position: absolute;

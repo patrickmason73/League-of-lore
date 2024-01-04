@@ -42,7 +42,7 @@ function UserPosts({ userPosts, addUserPost, handleAddPostComment, handlePostCom
         <div style={{backgroundImage: "linear-gradient(to right, #fc5c7d, #6a82fb)", paddingBottom: "20%"}}>
             <h1 style={{textAlign: "center", width: "100%", fontWeight: "800", backgroundColor: "black", color: "lightcoral", border: "groove", borderColor: "black", marginTop: "0px", borderTop: "none", borderBottomWidth: "5px", marginBottom: "10px"}}>General Forum: Posts From Users About Any LoL Topics</h1>
             {currentUser ?
-            <button style={{ marginLeft: "93%", marginRight: "20px", position: "fixed", fontWeight: "850", fontStyle: "normal", fontSize: "90%"}} className="button-85" onClick={() => setCreating((current) => !current)}>{creating ? "-" : "+"}</button>
+            <button style={{ marginLeft: "93%", marginRight: "20px", position: "fixed", fontWeight: "850", fontStyle: "normal", fontSize: "90%"}} className="button-glow" onClick={() => setCreating((current) => !current)}>{creating ? "-" : "+"}</button>
             : <p style={{textAlign: "right", marginTop: "20px", marginRight: "10px", fontWeight: "700", fontStyle: "italic", marginBottom: "0"}}>Log In Or Sign Up To Create Posts!</p>}
             {creating ? 
                 <form onSubmit={handleSubmit} style={{paddingLeft: "60px", paddingTop: "40px", paddingBottom: "20px", borderBottomStyle: "groove", borderBottomColor: "black"}}>
@@ -84,7 +84,7 @@ function UserPosts({ userPosts, addUserPost, handleAddPostComment, handlePostCom
                     </label>
                     <br/>
                     <br/>
-                    <button className="button-85" type="submit">CREATE POST</button>
+                    <button className="button-glow" type="submit">CREATE POST</button>
                     <ul style={{listStyle: "none", paddingLeft: "5px"}}>{errors && errors.map((err) => (
                         <li key={err} style={{fontWeight: "700"}}><u>ERROR:</u> {err}</li>
                     ))}</ul>

@@ -38,13 +38,13 @@ function Home({ champions, handleAddComment, handleDeleteComment, handleCommentU
 
     const region_sort = unique_regions.map((region) => {
         return (
-            <button className="button-85" key={region} onClick={() => setCategory(region)}>{region}</button>
+            <button className="button-glow" key={region} onClick={() => setCategory(region)}>{region}</button>
         )
     })
 
     return (
      <div>
-        <div style={{position: "fixed", backgroundColor: "black", width: "100%", textAlign: "center", borderLeft: "groove", borderRight: "groove", borderBottom: "groove", borderColor: "black", paddingBottom: "5px", borderBottomWidth: "5px", zIndex: "+1" }}>{region_sort}<button className="button-85" onClick={() => setCategory("None")}>All Regions</button></div>
+        <div style={{position: "fixed", backgroundColor: "black", width: "100%", textAlign: "center", borderLeft: "groove", borderRight: "groove", borderBottom: "groove", borderColor: "black", paddingBottom: "5px", borderBottomWidth: "5px", zIndex: "+1" }}>{region_sort}<button className="button-glow" onClick={() => setCategory("None")}>All Regions</button></div>
         <div style={{paddingTop: "10px"}}> 
             {displayChamps}
         </div>
