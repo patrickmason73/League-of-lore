@@ -11,17 +11,18 @@ function Signup ({ handleSignUp, navigate }) {
     const [displayName, setDisplayName] = useState("")
     const [profilePic, setProfilePic] = useState("")
     const [bio, setBio] = useState("")
+    const [email, setEmail] = useState("")
     const [errors, setErrors] = useState([])
 
 
     function handleSubmit(e) {
         e.preventDefault()
-        handleSignUp(username, password, passwordConfirmation, displayName, profilePic, bio, setErrors)
+        handleSignUp(username, password, passwordConfirmation, displayName, profilePic, bio, email, setErrors)
     }
 
     return (
         <form onSubmit={handleSubmit} style={{textAlign: "center", backgroundImage: "linear-gradient(to right, #fc5c7d, #6a82fb)", paddingBottom: "55px", paddingTop: "5px"}}>
-        <span>Already Have An Account? <u style={{cursor: "pointer", fontWeight: "500"}} onClick={() => navigate("/login")}>Log in</u></span>
+        <span>Already Have An Account? <u style={{cursor: "pointer", fontWeight: "800"}} onClick={() => navigate("/login")}>Log in</u></span>
             <label>
                <h3>Username:
                <input 
@@ -57,6 +58,18 @@ function Signup ({ handleSignUp, navigate }) {
                 />
                </h3>
 
+            </label>
+            <label>
+               <h3>Enter A Valid Email:
+               <input 
+                type="text"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                style={{width: "300px", margin: "5px", backgroundColor: "black", color: "white", borderStyle: "groove", borderRadius: "10px", borderWidth: "2px", padding: "5px"}}
+                />
+               </h3>
+                
             </label>
             <br />
             <label>

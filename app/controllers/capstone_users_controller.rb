@@ -5,9 +5,12 @@ class CapstoneUsersController < ApplicationController
     end
 
     def create
-        newUser = CapstoneUser.create!(user_params)
-        session[:user_id] = newUser.id
-        render json: newUser, status: :created
+        @user = CapstoneUser.create!(user_params)
+        if @user.save!
+        session[:user_id] = @user.id
+        UserMailer.welcome_email(@user).deliver_now
+        render json: @user, status: :created
+        end
     end
 
     def update
@@ -24,6 +27,6 @@ class CapstoneUsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:username, :password, :password_confirmation, :display_name, :profile_pic, :bio, :champion_comments, :champions, :user_posts, :post_comments)
+        params.permit(:username, :password, :password_confirmation, :display_name, :profile_pic, :bio, :email, :champion_comments, :champions, :user_posts, :post_comments, :capstone_user)
     end
 end

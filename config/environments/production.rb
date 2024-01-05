@@ -2,6 +2,18 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.action_mailer.default_url_options = { host: 'https://capstone-project-ud8d.onrender.com/signup' }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.your_provider.com',
+    port: 587,
+    domain: 'gmail.com',
+    user_name: 'leagueofloreofficial@gmail.com',
+    password: 'pmmn czse hybh wmum',
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
 
   # Code is not reloaded between requests.
   config.cache_classes = true

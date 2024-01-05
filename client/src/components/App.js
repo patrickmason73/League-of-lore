@@ -8,7 +8,17 @@ import UserProfile from "./UserProfile";
 import Login from "./Login";
 import Search from "./Search";
 import UserPosts from "./UserPosts";
+import { useLocation } from 'react-router-dom';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null; 
+}
 
 
 function App() {
@@ -50,7 +60,7 @@ function App() {
         })
       }
   
- function handleSignUp(username, password, passwordConfirmation, displayName, profilePic, bio, setErrors) {
+ function handleSignUp(username, password, passwordConfirmation, displayName, profilePic, bio, email, setErrors) {
     
         fetch("/signup", {
             method: "POST",
@@ -64,6 +74,7 @@ function App() {
                 display_name: displayName,
                 profile_pic: profilePic,
                 bio,
+                email,
             }),
         }).then((res) => {
             if (res.ok) {
@@ -348,7 +359,7 @@ function App() {
 
     return (
         <div>
-           
+           <ScrollToTop />
          <Navbar logout={logout} navigate={navigate}/>
          <div style={ currentUser ? {width: "100%", height: "127px", backgroundColor: "black"} : {width: "100%", height: "95px", backgroundColor: "black"}}></div>
 
