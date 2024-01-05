@@ -10,7 +10,7 @@ Rails.application.configure do
     port: 587,
     domain: 'gmail.com',
     user_name: 'leagueofloreofficial@gmail.com',
-    password: 'pmmn czse hybh wmum',
+    password: Rails.application.credentials.smtp_app_password,
     authentication: 'plain',
     enable_starttls_auto: true
   }
