@@ -12,12 +12,25 @@
 - Run 'bundle install'
 - Run 'npm install --prefix client'
 
-You can use the following commands to run the application locally:
+To set up your database, you will need to edit or disable the Action Mailer functionality prior to starting
+
+- Go to the config/environments/development.rb file
+- Under the 'config.action_mailer.smtp_settings'
+- Change the 'user_name' and 'password' variables to your email username and your app password (This is not encrypted or safe, just for development purposes)
+- If your email doesn't have the gmail.com domain, you will need to edit the other variables to match your domain settings
+- Navigate to the app/mailers/user_mailer.rb file
+- Change the 'default from:' email to your email address
+
+This will allow you to run the database commands without errors
+
+You can now use the following commands to run the application locally:
 
 - `sudo service postgresql start`: Start PostgreSQL database server
+- `rails db:create` : create the database
+- `rails db:migrate` : run migrations
+- `rails db:seed`: seed the database
 - `rails s`: run the backend on [http://localhost:3000](http://localhost:3000)
 - `npm start --prefix client`: run the frontend on [http://localhost:4000](http://localhost:4000)
-- `rails db:seed`: seed the database
 
 ## Introduction
 
