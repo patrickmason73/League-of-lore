@@ -6,11 +6,11 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.your_provider.com',
+    address: 'smtp.gmail.com',
     port: 587,
     domain: 'gmail.com',
-    user_name: 'leagueofloreofficial@gmail.com',
-    password: Rails.application.credentials.smtp_app_password,
+    user_name: Rails.application.credentials.smtp[:user_name],
+    password: Rails.application.credentials.smtp[:password],
     authentication: 'plain',
     enable_starttls_auto: true
   }

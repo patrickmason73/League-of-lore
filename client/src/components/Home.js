@@ -6,23 +6,16 @@ function Home({ champions, handleAddComment, handleDeleteComment, handleCommentU
     const [category, setCategory] = useState("None")
 
     const displayChamps = champions.map((champion) => {
-        if (category === "None") {
-        return (
-        <article key={champion.id} style={{backgroundImage: "linear-gradient(to right, #fc5c7d, #6a82fb)", paddingBottom: "15px", paddingTop: '10px', marginBottom: "30px", display: "block"}}>
-        <ChampionCard champion={champion} handleAddComment={handleAddComment} handleDeleteComment={handleDeleteComment} handleCommentUpdate={handleCommentUpdate} navigate={navigate}/>
-        </article> 
-        )
-        } else {
+        if (category === "None" || champion.champion_region.name === category) {
             return (
-                <>
-                {champion.champion_region.name === category ?
-                <article key={champion.id} style={{backgroundImage: "linear-gradient(to right, #fc5c7d, #6a82fb)", paddingBottom: "15px", paddingTop: '10px', marginBottom: "30px", display: "block"}}>
+              <article key={champion.id} style={{backgroundImage: "linear-gradient(to right, #fc5c7d, #6a82fb)", paddingBottom: "15px", paddingTop: '10px', marginBottom: "30px", display: "block"}}>
                 <ChampionCard champion={champion} handleAddComment={handleAddComment} handleDeleteComment={handleDeleteComment} handleCommentUpdate={handleCommentUpdate} navigate={navigate}/>
-                </article>
-                :null} </>
-           )
-        }
-    })
+              </article> 
+            );
+          } else {
+            return null;
+          }
+        });
 
     function onlyUnique(value, index, array) {
         return array.indexOf(value) === index;
@@ -36,11 +29,9 @@ function Home({ champions, handleAddComment, handleDeleteComment, handleCommentU
     const unique_regions = regions.filter(onlyUnique)
 
 
-    const region_sort = unique_regions.map((region) => {
-        return (
-            <button className="button-glow" key={region} onClick={() => setCategory(region)}>{region}</button>
-        )
-    })
+    const region_sort = unique_regions.map((region, index) => (
+     <button className="button-glow" key={index} onClick={() => setCategory(region)}>{region}</button>    
+    ));
 
     return (
      <div>
@@ -51,5 +42,4 @@ function Home({ champions, handleAddComment, handleDeleteComment, handleCommentU
      </div>
     )
 }
-
 export default Home;
