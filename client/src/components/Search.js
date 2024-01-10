@@ -4,15 +4,17 @@ import ChampionCard from "./ChampionCard";
 
 function Search({ champions, handleAddComment, searchText, setSearchText, handleDeleteComment, handleCommentUpdate }) {
   const [champion, setChampion] = useState()
+  const [prevText, setPrevText] = useState("")
 
   function handleSubmit(e) {
     e.preventDefault();
+    setPrevText(searchText)
     setChampion(champions.find((champ) => champ.name.toLowerCase() === searchText.toLowerCase()))
    }
 
   useEffect(() => {
-    setChampion(champions.find((champ) => champ.name.toLowerCase() === searchText.toLowerCase()))
-  }, [champions])
+    setChampion(champions.find((champ) => champ.name.toLowerCase() === prevText.toLowerCase()))
+  }, [champions, prevText])
 
     return (
         <div style={{backgroundImage: "linear-gradient(to right, #fc5c7d, #6a82fb)", paddingTop: "20px", height: "100%", paddingBottom: "20%"}}>
