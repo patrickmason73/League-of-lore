@@ -16,8 +16,8 @@ To set up your database, you will need to edit or disable the Action Mailer func
 
 - Go to the config/environments/development.rb file
 - Under the 'config.action_mailer.smtp_settings'
-- Change the 'user_name' and 'password' variables to your email username and your app password (This is not encrypted or safe, just for development purposes)
-- If your email doesn't have the gmail.com domain, you will need to edit the other variables to match your domain settings
+- Change the 'user_name' and 'password' variables to your email username and your app password (This is not encrypted or safe, just for development purposes. Also you may need to generate your app password and this can be done in your Google account under the 'Security' tab, there is a section called 'App Passwords', there you can generate your password.)
+- If your email doesn't have the gmail.com domain, you will need to edit the other smtp_settings variables to match your domain settings
 - Navigate to the app/mailers/user_mailer.rb file
 - Change the 'default from:' email to your email address
 
