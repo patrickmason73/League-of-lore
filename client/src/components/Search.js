@@ -5,11 +5,15 @@ import ChampionCard from "./ChampionCard";
 function Search({ champions, handleAddComment, searchText, setSearchText, handleDeleteComment, handleCommentUpdate }) {
   const [champion, setChampion] = useState()
   const [prevText, setPrevText] = useState("")
+  const [message, setMessage] = useState("")
 
   function handleSubmit(e) {
     e.preventDefault();
+    const searchedChamp = champions.find((champ) => champ.name.toLowerCase() === searchText.toLowerCase())
+    setChampion(searchedChamp)
     setPrevText(searchText)
-    setChampion(champions.find((champ) => champ.name.toLowerCase() === searchText.toLowerCase()))
+    setMessage(searchedChamp ? "" : "Ensure Champion Name Spelled Correctly!")
+      
    }
 
   useEffect(() => {
@@ -26,7 +30,7 @@ function Search({ champions, handleAddComment, searchText, setSearchText, handle
                <button type="submit" style={{fontSize: "140%"}}>Search</button>
             </form>
             <article >
-              {champion ? <ChampionCard champion={champion} handleAddComment={handleAddComment} handleDeleteComment={handleDeleteComment} handleCommentUpdate={handleCommentUpdate}/> : <p style={{textAlign: "center"}}><b>Ensure Champion Name Spelled Correctly!</b></p>}
+              {champion ? <ChampionCard champion={champion} handleAddComment={handleAddComment} handleDeleteComment={handleDeleteComment} handleCommentUpdate={handleCommentUpdate}/> : <p style={{textAlign: "center"}}><b>{message}</b></p>}
             </article>
         </div>
     )
