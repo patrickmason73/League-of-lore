@@ -103,6 +103,7 @@ function Signup ({ handleSignUp, navigate }) {
                 <input 
                 type="text"
                 id="profilePic"
+                placeholder="Image URL must end in .png or .jpg"
                 value={profilePic}
                 style={{width:"400px", margin: "5px", backgroundColor: "black", color: "white", borderStyle: "groove", borderRadius: "10px", borderWidth: "2px", padding: "5px"}}
                 onChange={(e) => setProfilePic(e.target.value)}

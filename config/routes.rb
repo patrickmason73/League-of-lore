@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   post "/signup", to: "capstone_users#create"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+  get '*path', to: 'application#index', constraints: ->(request) do
+    !request.xhr? && request.format.html?
+  end
 end
