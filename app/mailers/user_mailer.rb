@@ -12,11 +12,11 @@ private
 
 def signup_url
     if Rails.env.production?
-        'https://capstone-project-ud8d.onrender.com/signup'
+        'https://capstone-project-ud8d.onrender.com/login'
     elsif Rails.env.development?
-        "http://localhost:4000/signup"
+        "http://localhost:4000/login"
       else
-        "http://localhost:4000/signup"
+        "http://localhost:4000/login"
       end
     end
 end
