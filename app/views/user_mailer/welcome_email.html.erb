@@ -1,14 +1,20 @@
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
+<head>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
 <h1>Welcome to League Of Lore, <%= @user.display_name %>!</h1>
 <p>
   Thank you for joining our community. We're excited to have you on board!
 </p>
 <p>
-  Login to your account <a href="<%= @url %>">here</a>.
+  You have successfully signed up to League of Lore,
+  your username is: <strong><%= @user.username %></strong>.
+</p>
+<p>
+  Return to League of Lore to browse, post, and comment freely with your new account: <%= @url %>.
+</p>
+<p>
+  Thanks for joining and have a great day!
 </p>
 </body>
 </html>
