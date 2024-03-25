@@ -17,7 +17,11 @@ private
     end
     
     def render_unprocessable_entity_response(exception)
-        render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
+      errors = exception.record.errors.messages.map do |field, messages|
+        messages.map { |message| "#{field.to_s.capitalize}: #{message}" }
+      end.flatten
+    
+      render json: { errors: errors }, status: :unprocessable_entity
     end
 
     def render_not_found_response

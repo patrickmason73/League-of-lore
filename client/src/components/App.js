@@ -80,11 +80,25 @@ function App() {
             if (res.ok) {
                 res.json().then((user) => {
                   setCurrentUser(user)
-                  setErrors([])
+                  setErrors({})
                   navigate("/login")
                 })
             } else {
-                res.json().then((err) => setErrors(err.errors))
+                res.json().then((err) => {
+                  const fieldErrors = {};
+                  err.errors.forEach((error) => {
+                    const [fieldName, errorMessage] = error.split(": ");
+                       const key = fieldName.trim().toLowerCase().replace(/ /g, "_");
+        if (fieldErrors[key]) {
+           
+           fieldErrors[key].push(errorMessage);
+          } else {
+          fieldErrors[key] = [errorMessage];
+        }
+       });
+      setErrors(fieldErrors);
+      console.log(fieldErrors)
+                });
             }
         })
       }

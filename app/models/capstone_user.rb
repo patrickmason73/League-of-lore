@@ -5,6 +5,7 @@ class CapstoneUser < ApplicationRecord
     has_many :user_posts, dependent: :destroy
     has_many :post_comments, dependent: :destroy
 
+    validates_confirmation_of :password
     validates :profile_pic, presence: true, format: { with: /\.(png|jpg)\Z/i }
     validates :username, presence: true, uniqueness: true, length: { maximum: 20, minimum: 8 }
     validates :bio, presence: true, length: { maximum: 1000 }
