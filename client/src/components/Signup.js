@@ -24,7 +24,7 @@ function Signup ({ handleSignUp, navigate }) {
         <form onSubmit={handleSubmit} style={{textAlign: "center", backgroundImage: "linear-gradient(to right, #fc5c7d, #6a82fb)", paddingBottom: "55px", paddingTop: "5px"}}>
         <span>Already Have An Account? <u style={{cursor: "pointer", fontWeight: "800"}} onClick={() => navigate("/login")}>Log in</u></span>
             <label>
-               <h3>Username:
+               <h3>Username: (Must be Unique)
                <input 
                 type="text"
                 id="username"
@@ -73,7 +73,7 @@ function Signup ({ handleSignUp, navigate }) {
             </label>
             <br />
             <label>
-                <b>Display Name</b> - This Is The Name Other Users Will See
+                <b>Display Name</b> - This Is The Name Other Users Will See (Must be unique)
                 <input 
                 type="text"
                 id="display_name"
