@@ -174,7 +174,9 @@ code {
   border-radius: 10px;
 }
 
-
+.button-glow:focus {
+  filter: brightness(150%)
+}
 
 
 .button-64 {
