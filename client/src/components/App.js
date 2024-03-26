@@ -97,7 +97,6 @@ function App() {
         }
        });
       setErrors(fieldErrors);
-      console.log(fieldErrors)
                 });
             }
         })
