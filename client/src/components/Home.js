@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import ChampionCard from "./ChampionCard";
 
-
 function Home({ champions, handleAddComment, handleDeleteComment, handleCommentUpdate, navigate }) {
+
     const [category, setCategory] = useState("None")
 
     const displayChamps = champions.map((champion) => {
@@ -30,7 +30,10 @@ function Home({ champions, handleAddComment, handleDeleteComment, handleCommentU
 
 
     const region_sort = unique_regions.map((region, index) => (
-     <button className="button-glow" key={index} onClick={() => setCategory(region)}>{region}</button>    
+     <button className="button-glow" key={index} onClick={() => { 
+       setCategory(region);
+       window.scrollTo(0, 0);
+      }}>{region}</button>    
     ));
 
     return (
@@ -42,4 +45,5 @@ function Home({ champions, handleAddComment, handleDeleteComment, handleCommentU
      </div>
     )
 }
+
 export default Home;
