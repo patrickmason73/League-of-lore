@@ -21,5 +21,13 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+
+  "web_accessible_resources": [
+    "build/react_devtools_backend.js",
+    "build/react_devtools_backend.js.map",
+    "build/react_devtools_frontend.js",
+    "build/react_devtools_frontend.js.map",
+    "build/react_devtools_backend_compact.js.map"
+  ]
 }
