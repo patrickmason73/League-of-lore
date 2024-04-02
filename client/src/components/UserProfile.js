@@ -40,7 +40,7 @@ function UserProfile({ champions, userPosts, updateUser }) {
                 } else {return null}
             })
             return (
-                <div key={champ.id} style={{borderStyle: "solid", margin: "14px" }}>
+                <div key={champ.id} style={{margin: "14px" }}>
                     <span >
                     <img src={champ.splash_art} alt={champ.name} style={{width: "21px", height: "21px", paddingRight: "3px", paddingTop: "5px"}}/>
                     
