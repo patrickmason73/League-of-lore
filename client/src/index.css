@@ -178,6 +178,9 @@ code {
   filter: brightness(150%)
 }
 
+.button-glow:hover {
+  filter: brightness(130%)
+}
 
 .button-64 {
   /* align-items: center; */
