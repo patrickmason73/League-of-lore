@@ -27,6 +27,10 @@ body {
   justify-content: "right"; */
 }
 
+.lol-logo:hover{
+  filter: brightness(150%)
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
