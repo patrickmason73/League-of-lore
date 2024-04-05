@@ -36,6 +36,10 @@ code {
     monospace;
 }
 
+.button-2 {
+  align-items: center;
+}
+
 .button-1 {
   align-items: center;
   justify-content: center;
