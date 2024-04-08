@@ -40,6 +40,10 @@ code {
   align-items: center;
 }
 
+.button-2:hover{
+  filter: brightness(150%)
+}
+
 .button-1 {
   align-items: center;
   justify-content: center;
