@@ -126,3 +126,6 @@ release_date: '2011-04-12', lore: "Once a tribesman of the icy Freljord named Ke
 
 braum = Champion.create(name: 'Braum', champion_region_id: the_freljord.id, splash_art: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Braum_0.jpg', 
 release_date: '2014-05-12', lore: "Blessed with massive biceps and an even bigger heart, Braum is a beloved hero of the Freljord. Every mead hall north of Frostheld toasts his legendary strength, said to have felled a forest of oaks in a single night, and punched an entire mountain into rubble. Bearing an enchanted vault door as his shield, Braum roams the frozen north sporting a mustachioed smile as big as his muscles—a true friend to all those in need.")
+
+briar = Champion.create(name: 'Briar', champion_region_id: noxus.id, splash_art: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Briar_0.jpg', 
+release_date: '2023-09-14', lore: "A failed experiment by the Black Rose, Briar’s uncontrollable bloodlust required a special pillory to focus her frenzied mind. After years of confinement, this living weapon broke free from her restraints and unleashed herself into the world. Now she’s controlled by no one—following only her hunger for knowledge and blood—and relishes the opportunities to let loose, even if reining back the frenzy isn’t easy.")
