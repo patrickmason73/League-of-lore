@@ -129,3 +129,6 @@ release_date: '2014-05-12', lore: "Blessed with massive biceps and an even bigge
 
 briar = Champion.create(name: 'Briar', champion_region_id: noxus.id, splash_art: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Briar_0.jpg', 
 release_date: '2023-09-14', lore: "A failed experiment by the Black Rose, Briar’s uncontrollable bloodlust required a special pillory to focus her frenzied mind. After years of confinement, this living weapon broke free from her restraints and unleashed herself into the world. Now she’s controlled by no one—following only her hunger for knowledge and blood—and relishes the opportunities to let loose, even if reining back the frenzy isn’t easy.")
+
+caitlyn = Champion.create(name: 'Caitlyn', champion_region_id: piltover.id, splash_art: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Caitlyn_0.jpg', 
+release_date: '2011-01-04', lore: "Renowned as its finest peacekeeper, Caitlyn is also Piltover's best shot at ridding the city of its elusive criminal elements. She is often paired with Vi, acting as a cool counterpoint to her partner's more impetuous nature. Even though she carries a one-of-a-kind hextech rifle, Caitlyn's most powerful weapon is her superior intellect, allowing her to lay elaborate traps for any lawbreakers foolish enough to operate in the City of Progress.")
