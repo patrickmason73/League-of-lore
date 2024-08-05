@@ -16,7 +16,7 @@ post_comment = PostComment.create(content: "Completely agree.", capstone_user_id
 # champion region
 runeterra = ChampionRegion.create(name: 'Runeterra', description: 'Composed of both the material and spirit realms, Runeterra is all that separates the celestial powers of creation from the abyssal threat of all undoing. This is a magical world unlike any other--inhabited by peoples both fierce and wondrous.')
 # champion
-aatrox = Champion.create(name: 'Aatrox', champion_region_id: runeterra.id, splash_art: 'https://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/uncentered/266/266000.jpg', 
+aatrox = Champion.create(name: 'Aatrox', champion_region_id: runeterra.id, splash_art: 'https://i.redd.it/raugkcc41ry91.png', 
 release_date: '2013-06-13', lore: 'Once honored defenders of Shurima against the Void, Aatrox and his brethren would eventually become an even greater threat to Runeterra, and were defeated only by cunning mortal sorcery. But after centuries of imprisonment, Aatrox was the first to find freedom once more, corrupting and transforming those foolish enough to try and wield the magical weapon that contained his essence. Now, with stolen flesh, he walks Runeterra in a brutal approximation of his previous form, seeking an apocalyptic and long overdue vengeance.')
 # example champion comment
 comment = ChampionComment.create(capstone_user_id: user.id, champion_id: aatrox.id, content: "Very interesting, cool design, not sure about the execution.")
